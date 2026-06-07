@@ -1,11 +1,11 @@
-<!D  {id:'gwangju',name:'Gwangju',emoji:'🎨',tag:'Culture Hub',tc:'t-cul',sub:'전남대 · Arts & History',cost:'₩350K–550K/month',
-   life:{'Monthly living cost':'₩350K–550K','Apartment rent (1-room)':'₩200K–350K','University dorm':'₩150K–300K/month','Bus monthly pass':'₩40,000','Campus meal (avg)':'₩3,000–4,500','Safety':'Very safe','Climate':'Mild winters · Hot humid summers','Int'l community':'Small but welcoming'},
+<!D  {id:'gwangju',name:'Gwangju',emoji:'🎨',tag:'Culture Hub',tc:'t-cul',sub:'전남대 · Arts & History',cost:'$259–$407/month',
+   life:{'Monthly living cost':'$259–$407','Apartment rent (1-room)':'$148–$259','University dorm':'$111–$222/month','Bus monthly pass':'$30','Campus meal (avg)':'$2–$3','Safety':'Very safe','Climate':'Mild winters · Hot humid summers','Int'l community':'Small but welcoming'},
    vibe:['Arts & Culture','5·18 History','Most Affordable','Authentic Korea','Famous Food (Gwangju Bap)'],
    pros:'Korea's most affordable major city · Famous food culture · Rich 5·18 democratic history · Peaceful campus life · CNU strong in medicine & engineering',
    cons:'Small international community · Limited English services · Hot humid summers · Smaller job market than Seoul/Busan',
   },
-  {id:'jeonju',name:'Jeonju',emoji:'🏯',tag:'Heritage City',tc:'t-her',sub:'전북대 · Hanok Village · K-Food Capital',cost:'₩350K–550K/month',
-   life:{'Monthly living cost':'₩350K–550K','Apartment rent (1-room)':'₩200K–350K','University dorm':'₩150K–280K/month','Bus monthly pass':'₩40,000','Campus meal (avg)':'₩3,000–4,500','Safety':'Very safe','Climate':'Warm · 4 seasons','Int'l community':'Small · mostly JBNU students'},
+  {id:'jeonju',name:'Jeonju',emoji:'🏯',tag:'Heritage City',tc:'t-her',sub:'전북대 · Hanok Village · K-Food Capital',cost:'$259–$407/month',
+   life:{'Monthly living cost':'$259–$407','Apartment rent (1-room)':'$148–$259','University dorm':'$111–$207/month','Bus monthly pass':'$30','Campus meal (avg)':'$2–$3','Safety':'Very safe','Climate':'Warm · 4 seasons','Int'l community':'Small · mostly JBNU students'},
    vibe:['Hanok Village','Bibimbap Capital','Traditional Culture','Budget Friendly','Slow Peaceful Pace'],
    pros:'UNESCO Creative City of Gastronomy · Jeonju Hanok Village (most famous in Korea) · JBNU dentistry & veterinary medicine · Extremely affordable · Authentic Korean culture immersion',
    cons:'Very small international community · No big-city amenities · Limited career networking · Regional pace',
@@ -243,21 +243,6 @@ footer a:hover{color:var(--gold2);}
 
 <!-- CITY -->
 
-<!-- QS RANKING STRIP -->
-<div id="qsStrip" style="background:var(--navy);color:#fff;padding:.8rem 1.5rem;overflow:hidden;">
-  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;white-space:nowrap;cursor:grab;user-select:none;" id="qsStripInner">
-    <span style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:.5rem">QS World 2026</span>
-    <span style="color:rgba(255,255,255,.3);flex-shrink:0">|</span>
-  </div>
-</div>
-<style>
-#qsStripInner::-webkit-scrollbar{display:none}
-.qs-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border-radius:20px;padding:4px 12px;margin:0 4px;font-size:12px;flex-shrink:0;transition:background .15s;cursor:default;}
-.qs-chip:hover{background:rgba(255,255,255,.15)}
-.qs-rank{font-weight:700;color:var(--gold);}
-.qs-name{color:rgba(255,255,255,.85);}
-</style>
-
 <section id="citySection">
   <div class="city-header">
     <h2>Step 1 — Choose Your City</h2>
@@ -341,37 +326,59 @@ footer a:hover{color:var(--gold2);}
 
 <script>
 /* ===== CITY DATA ===== */
+/* USD conversion utility */
+var USD_RATE = 1350;
+function fmtKrwUsd(v) {
+  if (!v || v === '') return '—';
+  if (v.indexOf('확인') >= 0 || v.indexOf('TBC') >= 0) return '<span style="color:#B8680A;font-size:11px">TBC</span>';
+  if (v.indexOf('FREE') >= 0) return '<span style="color:#2E7D32;font-weight:600">FREE</span>';
+  var n = parseInt(v.replace(/,/g,''));
+  if (isNaN(n)) return v;
+  return '$' + Math.round(n/USD_RATE).toLocaleString();
+}
 const cities=[
-  {id:'seoul',name:'Seoul',emoji:'🏙️',tag:'Capital',tc:'t-cap',sub:'30+ universities · Global hub',cost:'₩800K–1.2M/month',
-   life:{'Monthly living cost':'₩800K–1.2M','Apartment rent (1-room)':'₩500K–1M + deposit','University dorm':'₩300K–600K/month','Subway monthly pass':'₩55,000','Campus meal (avg)':'₩4,000–6,000','Safety':'Extremely safe','Climate':'4 seasons · Cold winter','Int\'l community':'Very large — English bubbles'},
+  {id:'seoul',name:'Seoul',emoji:'🏙️',tag:'Capital',tc:'t-cap',sub:'30+ universities · Global hub',cost:'$593–$889/month',
+   life:{'Monthly living cost':'$593–$889','Apartment rent (1-room)':'$370–$741 + deposit','University dorm':'$222–$444/month','Subway monthly pass':'$41','Campus meal (avg)':'$3–$4','Safety':'Extremely safe','Climate':'4 seasons · Cold winter','Int\'l community':'Very large — English bubbles'},
    vibe:['K-Pop & Culture','Global Networking','Best Career Hub','Endless Entertainment','Top University Density'],
    pros:'Samsung/LG/Hyundai HQ · Biggest job market · SKY universities · Largest int\'l community',
    cons:'30–40% more expensive than other cities · Very crowded · English bubble slows Korean learning',
   },
-  {id:'busan',name:'Busan',emoji:'🌊',tag:'Coastal',tc:'t-sea',sub:'Korea\'s 2nd city · Beaches',cost:'₩500K–800K/month',
-   life:{'Monthly living cost':'₩500K–800K','Apartment rent (1-room)':'₩380K–530K + deposit','University dorm':'₩200K–400K/month','Subway monthly pass':'₩50,000','Campus meal (avg)':'₩3,500–5,000','Safety':'Very safe','Climate':'Milder winters · Sea breeze','Int\'l community':'Growing fast · BIFF crowds'},
+  {id:'busan',name:'Busan',emoji:'🌊',tag:'Coastal',tc:'t-sea',sub:'Korea\'s 2nd city · Beaches',cost:'$370–$593/month',
+   life:{'Monthly living cost':'$370–$593','Apartment rent (1-room)':'$281–$393 + deposit','University dorm':'$148–$296/month','Subway monthly pass':'$37','Campus meal (avg)':'$3–$4','Safety':'Very safe','Climate':'Milder winters · Sea breeze','Int\'l community':'Growing fast · BIFF crowds'},
    vibe:['Beach & Ocean','Fresh Seafood','BIFF Film Festival','Relaxed Pace','30–40% Cheaper'],
    pros:'Beautiful beaches · Haeundae · Relaxed lifestyle · PNU strong national university · BIFF',
    cons:'Fewer corporate HQs · Regional dialect (사투리) · Smaller int\'l community than Seoul',
   },
-  {id:'daejeon',name:'Daejeon',emoji:'🔬',tag:'Tech Hub',tc:'t-tec',sub:'KAIST · Korea\'s Silicon Valley',cost:'₩400K–650K/month',
-   life:{'Monthly living cost':'₩400K–650K','Apartment rent (1-room)':'₩270K–400K','University dorm':'₩180K–350K/month','Bus monthly pass':'₩45,000','Campus meal (avg)':'₩3,000–4,500','Safety':'Very safe · Quiet city','Climate':'4 seasons · Hot dry summers','Int\'l community':'Moderate (KAIST-centered)'},
+  {id:'daejeon',name:'Daejeon',emoji:'🔬',tag:'Tech Hub',tc:'t-tec',sub:'KAIST · Korea\'s Silicon Valley',cost:'$296–$481/month',
+   life:{'Monthly living cost':'$296–$481','Apartment rent (1-room)':'$200–$296','University dorm':'$133–$259/month','Bus monthly pass':'$33','Campus meal (avg)':'$2–$3','Safety':'Very safe · Quiet city','Climate':'4 seasons · Hot dry summers','Int\'l community':'Moderate (KAIST-centered)'},
    vibe:['KAIST Prestige','Free Tuition','Research Focus','Lowest Cost','Science Valley'],
    pros:'KAIST = free tuition for all grad students · ETRI research zone · Cheapest living costs',
    cons:'Smaller city · Less nightlife · Mainly STEM · Fewer English speakers outside campus',
   },
-  {id:'daegu',name:'Daegu',emoji:'🌡️',tag:'Culture',tc:'t-cul',sub:'Fashion city · KNU research',cost:'₩400K–600K/month',
-   life:{'Monthly living cost':'₩400K–600K','Apartment rent (1-room)':'₩250K–420K','University dorm':'₩180K–340K/month','Metro monthly pass':'₩45,000','Campus meal (avg)':'₩3,000–4,500','Safety':'Very safe','Climate':'Hottest summers ("Daefrica") · Cold winters','Int\'l community':'Moderate · Forces Korean use'},
+  {id:'daegu',name:'Daegu',emoji:'🌡️',tag:'Culture',tc:'t-cul',sub:'Fashion city · KNU research',cost:'$296–$444/month',
+   life:{'Monthly living cost':'$296–$444','Apartment rent (1-room)':'$185–$311','University dorm':'$133–$252/month','Metro monthly pass':'$33','Campus meal (avg)':'$2–$3','Safety':'Very safe','Climate':'Hottest summers ("Daefrica") · Cold winters','Int\'l community':'Moderate · Forces Korean use'},
    vibe:['Fashion & Design','Very Affordable','Deep Korean Culture','KNU Medicine','Force Korean Skills'],
    pros:'Cheapest cost of living · Forces you to speak Korean (faster fluency) · KNU medical · Great food',
    cons:'Very hot summers · Limited English services · Smallest job market among major cities',
   },
-  {id:'incheon',name:'Incheon',emoji:'✈️',tag:'Port City',tc:'t-por',sub:'Near Seoul · Songdo smart city',cost:'₩450K–700K/month',
-   life:{'Monthly living cost':'₩450K–700K','Apartment rent (1-room)':'₩350K–550K','University dorm':'₩220K–380K/month','AREX to Seoul':'~₩2,700/trip (43 min)','Campus meal (avg)':'₩3,500–5,000','Safety':'Very safe','Climate':'Similar to Seoul · Coastal breeze','Int\'l community':'Western-friendly Songdo'},
+  {id:'incheon',name:'Incheon',emoji:'✈️',tag:'Port City',tc:'t-por',sub:'Near Seoul · Songdo smart city',cost:'$333–$519/month',
+   life:{'Monthly living cost':'$333–$519','Apartment rent (1-room)':'$259–$407','University dorm':'$163–$281/month','AREX to Seoul':'~₩2,700/trip (43 min)','Campus meal (avg)':'$3–$4','Safety':'Very safe','Climate':'Similar to Seoul · Coastal breeze','Int\'l community':'Western-friendly Songdo'},
    vibe:['30 min to Seoul','Songdo Smart City','Near Airport','Western Lifestyle','Growing Campus'],
    pros:'Best of both worlds: cheaper than Seoul but 30–60 min to city centre · Incheon Airport access',
    cons:'Still developing local scene · Some areas lack student atmosphere · Less vibrant than Seoul/Busan',
   },
+  {id:'gwangju',name:'Gwangju',emoji:'🎨',tag:'Culture Hub',tc:'t-cul',sub:'Arts & History · 5·18',cost:'$259–$407/month',
+   life:{'Monthly living cost':'$259–$407','Apartment rent (1-room)':'$148–$259/month','University dorm':'$111–$222/month','Bus monthly pass':'$30','Campus meal (avg)':'$2–$3','Safety':'Very safe','Climate':'Mild winters · Hot humid summers','Int\'l community':'Small but welcoming'},
+   vibe:['Arts & Culture','5·18 History','Most Affordable','Authentic Korea','Famous Food (Gwangju Bap)'],
+   pros:'Korea\'s most affordable major city · Famous food culture · Rich 5·18 democratic history · Peaceful campus life · CNU strong in medicine & engineering',
+   cons:'Small international community · Limited English services · Hot humid summers · Smaller job market than Seoul/Busan',
+  },
+  {id:'jeonju',name:'Jeonju',emoji:'🏯',tag:'Heritage City',tc:'t-her',sub:'Hanok Village · K-Food Capital',cost:'$259–$407/month',
+   life:{'Monthly living cost':'$259–$407','Apartment rent (1-room)':'$148–$259/month','University dorm':'$111–$207/month','Bus monthly pass':'$30','Campus meal (avg)':'$2–$3','Safety':'Very safe','Climate':'Warm · 4 seasons','Int\'l community':'Small · mostly JBNU students'},
+   vibe:['Hanok Village','Bibimbap Capital','Traditional Culture','Budget Friendly','Slow Peaceful Pace'],
+   pros:'UNESCO Creative City of Gastronomy · Jeonju Hanok Village (most famous in Korea) · JBNU dentistry & veterinary medicine · Extremely affordable · Authentic Korean culture immersion',
+   cons:'Very small international community · No big-city amenities · Limited career networking · Regional pace',
+  }
 ];
 
 /* ===== UNIVERSITY DATA — ALL LINKS VERIFIED ===== */
@@ -381,8 +388,8 @@ const universities=[
    admUrl:'https://en.snu.ac.kr/admission',
    guideUrl:'https://en.snu.ac.kr/admission/undergraduate/application',
    contact:{dept:'Office of Admissions (International)',email:'snuadmit@snu.ac.kr',phone:'+82-2-880-6971'},
-   tuition:{hum:'4,884,000',eng:'5,996,000',med:'10,076,000',lang:'약 ₩1,500,000/level',src:'서울대 2025-1학기 등록금 일람표(공식 PDF)'},
-   dorm:'₩300K–500K/mo (on-campus priority for int\'l)',
+   tuition:{hum:'4,884,000',eng:'5,996,000',med:'10,076,000',lang:'~$1111/level',src:'서울대 2025-1학기 등록금 일람표(공식 PDF)'},
+   dorm:'$222–$370/mo (on-campus priority for int\'l)',
    dormNote:'Apply at same time as admission — spots fill fast',
    schols:[
      {n:'SNU Global Scholarship',d:'Full tuition + ₩600,000/month living for outstanding int\'l students'},
@@ -399,8 +406,8 @@ const universities=[
    guideUrl:'https://apply.kaist.ac.kr/InterApply/',
    contact:{dept:'Undergraduate Admissions',email:'creative.adm@kaist.ac.kr',phone:'+82-42-350-4803'},
    contact2:{dept:'Graduate Admissions',email:'advanced.adm@kaist.ac.kr',phone:'+82-42-350-2352'},
-   tuition:{hum:'FREE (scholarship)',eng:'FREE (scholarship)',med:'',lang:'~₩1,200,000/level'},
-   dorm:'₩200K–350K/mo (ALL students guaranteed)',
+   tuition:{hum:'FREE (scholarship)',eng:'FREE (scholarship)',med:'',lang:'~$889/level'},
+   dorm:'$148–$259/mo (ALL students guaranteed)',
    dormNote:'Guaranteed — no competition needed',
    schols:[
      {n:'KAIST Full Scholarship (All Grad Students)',d:'100% tuition waiver + ₩350,000–500,000/month stipend for ALL admitted graduate students'},
@@ -415,8 +422,8 @@ const universities=[
    admUrl:'https://www.pusan.ac.kr/eng/CMS/Contents/Contents.do?mCode=MN013',
    guideUrl:'https://international.pusan.ac.kr/international/15210/subview.do',
    contact:{dept:'PNU International (국제처)',email:'gopnu@pusan.ac.kr',phone:'+82-51-510-2061'},
-   tuition:{hum:'4,500,000',eng:'5,800,000',med:'5,800,000',lang:'~₩1,400,000/level',src:'부산대 외국인 특별전형 등록금 안내 — 학기당 기준(연간 추산)'},
-   dorm:'₩200K–380K/mo (priority for int\'l students)',
+   tuition:{hum:'4,500,000',eng:'5,800,000',med:'5,800,000',lang:'~$1037/level',src:'부산대 외국인 특별전형 등록금 안내 — 학기당 기준(연간 추산)'},
+   dorm:'$148–$281/mo (priority for int\'l students)',
    dormNote:'Apply with admission documents — Sangnam Int\'l House',
    schols:[
      {n:'PNU International Scholarship',d:'30–100% tuition waiver for degree-seeking int\'l students'},
@@ -434,8 +441,8 @@ const universities=[
    guideUrl:'https://international.knu.ac.kr',
    contact:{dept:'국제처 — 외국인 학부입학',email:'knu2024150@knu.ac.kr',phone:'+82-53-950-2436'},
    contact2:{dept:'국제처 — 외국인 대학원입학',email:'admission@knu.ac.kr',phone:'+82-53-950-2435'},
-   tuition:{hum:'약 4,200,000',eng:'약 5,600,000',med:'약 6,400,000',lang:'~₩1,300,000/level',src:'경북대 국립대 — PNU 기준 추산, 공식 확인 권장'},
-   dorm:'₩180K–340K/mo',
+   tuition:{hum:'약 4,200,000',eng:'약 5,600,000',med:'약 6,400,000',lang:'~$963/level',src:'경북대 국립대 — PNU 기준 추산, 공식 확인 권장'},
+   dorm:'$133–$252/mo',
    dormNote:'Very affordable — Daegu city rates',
    schols:[
      {n:'KNU Global Scholarship',d:'30–70% tuition waiver for academically excellent int\'l students'},
@@ -451,8 +458,8 @@ const universities=[
    admUrl:'https://plus.cnu.ac.kr/html/en/',
    guideUrl:'https://plus.cnu.ac.kr/html/en/admission/index.html',
    contact:{dept:'International Affairs Office',email:'international@cnu.ac.kr',phone:'+82-42-821-5044'},
-   tuition:{hum:'3,372,000',eng:'4,844,000',med:'8,308,000',lang:'약 ₩1,250,000/level',src:'대학알리미 2025년 공시'},
-   dorm:'₩180K–330K/mo',
+   tuition:{hum:'3,372,000',eng:'4,844,000',med:'8,308,000',lang:'~$926/level',src:'대학알리미 2025년 공시'},
+   dorm:'$133–$244/mo',
    dormNote:'Very affordable — Daejeon rates',
    schols:[
      {n:'CNU Global Scholarship',d:'30–100% tuition waiver for excellent int\'l students'},
@@ -467,8 +474,8 @@ const universities=[
    admUrl:'https://www.inu.ac.kr/user/indexSub.action?codyMenuSeq=1039551&siteId=engl',
    guideUrl:'https://www.inu.ac.kr/user/indexSub.action?codyMenuSeq=1039551&siteId=engl',
    contact:{dept:'Global Center (국제교류처)',email:'global@inu.ac.kr',phone:'+82-32-835-8781'},
-   tuition:{hum:'약 4,000,000',eng:'약 5,400,000',med:'',lang:'~₩1,300,000/level',src:'인천대 국립대 — 공식 홈페이지 확인 권장 (inu.ac.kr)'},
-   dorm:'₩220K–380K/mo',
+   tuition:{hum:'약 4,000,000',eng:'약 5,400,000',med:'',lang:'~$963/level',src:'인천대 국립대 — 공식 홈페이지 확인 권장 (inu.ac.kr)'},
+   dorm:'$163–$281/mo',
    dormNote:'Songdo campus — smart city, very modern',
    schols:[
      {n:'INU Global Scholarship',d:'30–100% tuition for admitted int\'l students'},
@@ -487,8 +494,8 @@ const universities=[
    guideUrl:'https://uic.yonsei.ac.kr/main/admission.php?mid=m04_02_04',
    contact:{dept:'Office of International Affairs',email:'ysoia@yonsei.ac.kr',phone:'+82-2-2123-3983'},
    contact2:{dept:'Asia/Oceania Coordinator',email:'sap@yonsei.ac.kr',phone:'+82-2-2123-4704'},
-   tuition:{hum:'7,426,000',eng:'9,788,000',med:'12,706,000',lang:'약 ₩1,800,000/level',src:'연세대 2025학년도 학부 등록금 명세표(공식 PDF)'},
-   dorm:'₩350K–600K/mo',
+   tuition:{hum:'7,426,000',eng:'9,788,000',med:'12,706,000',lang:'~$1333/level',src:'연세대 2025학년도 학부 등록금 명세표(공식 PDF)'},
+   dorm:'$259–$444/mo',
    dormNote:'Sinchon campus — central Seoul location',
    schols:[
      {n:'Yonsei International Scholarship',d:'Up to 100% tuition waiver — merit-based for admitted students'},
@@ -505,8 +512,8 @@ const universities=[
    guideUrl:'https://oia.korea.ac.kr/oia/index.do',
    contact:{dept:'International Admissions (Undergraduate)',email:'admission@korea.ac.kr',phone:'+82-2-3290-5156 / 5157'},
    contact2:{dept:'Graduate Admissions',email:'graduate1@korea.ac.kr',phone:'+82-2-3290-1356'},
-   tuition:{hum:'7,476,000',eng:'10,164,000',med:'13,034,000',lang:'약 ₩1,750,000/level',src:'고려대 2025학년도 대학 등록금 일람표(공식 PDF)'},
-   dorm:'₩300K–550K/mo',
+   tuition:{hum:'7,476,000',eng:'10,164,000',med:'13,034,000',lang:'~$1296/level',src:'고려대 2025학년도 대학 등록금 일람표(공식 PDF)'},
+   dorm:'$222–$407/mo',
    dormNote:'Anam campus — limited spots, apply early. KU cannot guarantee all int\'l students a dorm.',
    schols:[
      {n:'KU International Scholarship',d:'Merit-based: 30–100% tuition waiver'},
@@ -522,8 +529,8 @@ const universities=[
    admUrl:'https://oia.hanyang.ac.kr/admission',
    guideUrl:'https://oia.hanyang.ac.kr/',
    contact:{dept:'International Admissions & Student Services',email:'oia@hanyang.ac.kr',phone:'+82-2-2220-2445 / 2446 / 2448'},
-   tuition:{hum:'10,558,000',eng:'13,920,000',med:'확인 필요',lang:'~₩1,650,000/level',src:'한양대 2026학년도 1학기 등록금 책정표(공식) ✓'},
-   dorm:'₩280K–500K/mo',
+   tuition:{hum:'10,558,000',eng:'13,920,000',med:'확인 필요',lang:'~$1222/level',src:'한양대 2026학년도 1학기 등록금 책정표(공식) ✓'},
+   dorm:'$207–$370/mo',
    dormNote:'Seoul & ERICA (Ansan) campuses — check oia.hanyang.ac.kr',
    schols:[
      {n:'HY International Scholarship',d:'Up to 100% tuition waiver — academic merit'},
@@ -540,8 +547,8 @@ const universities=[
    guideUrl:'https://admission-global.skku.edu/eng/',
    contact:{dept:'International Admissions',email:'intlglobal@skku.edu',phone:'+82-2-760-0014'},
    contact2:{dept:'International Student Services',email:'fore@skku.edu',phone:'Check skku.edu'},
-   tuition:{hum:'9,000,000',eng:'11,600,000',med:'13,200,000',lang:'~₩1,700,000/level',src:'성균관대 외국인 입학 안내 — 학기당 445만~662만원 범위(연간 추산)'},
-   dorm:'₩300K–520K/mo',
+   tuition:{hum:'9,000,000',eng:'11,600,000',med:'13,200,000',lang:'~$1259/level',src:'성균관대 외국인 입학 안내 — 학기당 445만~662만원 범위(연간 추산)'},
+   dorm:'$222–$385/mo',
    dormNote:'Available on Seoul (Jongro) & Suwon campuses',
    schols:[
      {n:'SKKU Global Scholarship',d:'50–100% tuition; some include accommodation support'},
@@ -558,8 +565,8 @@ const universities=[
    guideUrl:'https://isa.ewha.ac.kr/sites/oisa/file/ag_english.pdf',
    contact:{dept:'Office of International Affairs',email:'oia@ewha.ac.kr',phone:'+82-2-3277-3158'},
    contact2:{dept:'Int\'l Student Affairs (Exchange)',email:'Check oia.ewha.ac.kr',phone:'+82-2-3277-4626 / 4627'},
-   tuition:{hum:'7,500,000',eng:'9,250,000',med:'확인 필요',lang:'~₩1,700,000/level',src:'이화여대 외국인 특별전형 등록금 안내 — 학기당 기준(연간 추산)'},
-   dorm:'₩280K–480K/mo',
+   tuition:{hum:'7,500,000',eng:'9,250,000',med:'확인 필요',lang:'~$1259/level',src:'이화여대 외국인 특별전형 등록금 안내 — 학기당 기준(연간 추산)'},
+   dorm:'$207–$356/mo',
    dormNote:'Women-only campus in Sinchon, Seoul',
    schols:[
      {n:'Ewha International Scholarship',d:'50–100% tuition waiver — merit-based'},
@@ -576,8 +583,8 @@ const universities=[
    guideUrl:'https://adm-g.postech.ac.kr/ENG/',
    contact:{dept:'Undergraduate Admissions',email:'postech-iuadmission@postech.ac.kr',phone:'+82-54-279-0600'},
    contact2:{dept:'Graduate Admissions',email:'grad-admission@postech.ac.kr',phone:'Check adm-g.postech.ac.kr/ENG/'},
-   tuition:{hum:'FREE (all grad)',eng:'FREE (all grad)',med:'',lang:'~₩1,100,000/level'},
-   dorm:'₩180K–320K/mo (ALL students guaranteed)',
+   tuition:{hum:'FREE (all grad)',eng:'FREE (all grad)',med:'',lang:'~$815/level'},
+   dorm:'$133–$237/mo (ALL students guaranteed)',
    dormNote:'Guaranteed for all — very affordable Pohang costs',
    schols:[
      {n:'POSTECH Full Scholarship (All Grad Students)',d:'ALL admitted graduate students: 100% tuition + ₩400,000/month stipend'},
@@ -594,8 +601,8 @@ const universities=[
    admUrl:'https://admission.jnu.ac.kr/Foreigner/Viewer',
    guideUrl:'https://admission.jnu.ac.kr/WebApp/web/HOM/COM/Board/board.aspx?boardID=401',
    contact:{dept:'국제협력과 (Undergraduate Admissions)',email:'internia@jnu.ac.kr',phone:'+82-62-530-1268'},
-   tuition:{hum:'3,406,000',eng:'4,347,000',med:'8,308,000',lang:'~₩1,200,000/level',src:'전남대 2025학년도 등록금 동결 — 거점국립대 기준(나무위키·대학알리미 참조)'},
-   dorm:'₩150K–300K/mo',
+   tuition:{hum:'3,406,000',eng:'4,347,000',med:'8,308,000',lang:'~$889/level',src:'전남대 2025학년도 등록금 동결 — 거점국립대 기준(나무위키·대학알리미 참조)'},
+   dorm:'$111–$222/mo',
    dormNote:'Gwangju — Korea\'s most affordable dorm rates · apply with admission',
    schols:[
      {n:'CNU Global Scholarship',d:'30–100% tuition waiver for excellent international students'},
@@ -612,8 +619,8 @@ const universities=[
    guideUrl:'https://ioffice.jbnu.ac.kr/ioffice/22295/subview.do',
    contact:{dept:'Office of International Affairs (Undergraduate)',email:'admissionu@jbnu.ac.kr',phone:'+82-63-270-4653'},
    contact2:{dept:'Graduate Admissions',email:'admissiong@jbnu.ac.kr',phone:'+82-63-270-4382'},
-   tuition:{hum:'3,400,000',eng:'4,300,000',med:'8,100,000',lang:'~₩1,200,000/level',src:'전북대 등록금 7년째 동결 — 인문 160~180만/학기, 이공 200~230만/학기(나무위키 기준)'},
-   dorm:'₩150K–280K/mo',
+   tuition:{hum:'3,400,000',eng:'4,300,000',med:'8,100,000',lang:'~$889/level',src:'전북대 등록금 7년째 동결 — 인문 160~180만/학기, 이공 200~230만/학기(나무위키 기준)'},
+   dorm:'$111–$207/mo',
    dormNote:'Jeonju — very affordable · Chambit Hall, Hyemin Hall',
    schols:[
      {n:'JBNU International Scholarship',d:'Merit-based tuition waiver for international students'},
@@ -678,7 +685,7 @@ function selectCity(cid){
 
 /* ===== CARD ===== */
 function buildCard(u){
-  const fmtT=v=>v.includes('FREE')||v.includes('확인')?v:'₩'+v;
+  const fmtT=v=>fmtKrwUsd(v);
   const isFree=v=>v.includes('FREE');
   const isChk=v=>v.includes('확인');
   const tRows=[
@@ -718,14 +725,10 @@ function buildCard(u){
       <div class="irow"><span class="il">Application Guide</span><span class="iv"><a href="${u.guideUrl}" target="_blank">View Guide →</a><span class="verified"> ✓verified</span></span></div>
     </div>
     <div class="upanel" id="up-${u.id}-tuition">
-      <p style="font-size:10px;color:var(--light);margin-bottom:8px">Annual tuition (KRW) — verify current figures with university directly</p>
-      <div class="tgrid">${tRows.map(r=>{
-        var usdLine = (!r.free && !r.chk && r.v.startsWith('₩'))
-          ? '<div style="font-size:10px;color:var(--light);margin-top:2px">~$'+Math.round(parseInt(r.v.replace(/[₩,]/g,''))/USD_RATE).toLocaleString()+' USD</div>'
-          : '';
-        return '<div class="tbox"><div class="ttype">'+r.k+'</div><div class="tamount '+(r.free?'free':r.chk?'chk':'')+'">'+r.v+usdLine+'</div></div>';
-      }).join('')}</div>
-      <p style="font-size:10px;color:var(--mid);margin-top:8px;padding:6px;background:var(--cream2);border-radius:5px">💡 National universities charge the same tuition for Korean and int'l students (no foreign surcharge). <b>"확인 필요"</b> = official figure not publicly accessible online — check the university admissions page or contact the office directly. Figures with ✓ source are verified from official documents.</p>
+      <div class="tgrid">
+        ${tRows.map(r=>`<div class="tbox"><div class="ttype">${r.k}</div><div class="tamount ${r.free?'free':r.chk?'chk':''}">${r.v}</div></div>`).join('')}
+      </div>
+      <p style="font-size:11px;color:var(--light);margin-top:8px">* Annual tuition (USD) · Rate: 1 USD ≈ ₩1,350 · TBC = contact university directly</p>
     </div>
     <div class="upanel" id="up-${u.id}-schol">
       <div class="slist">${u.schols.map(s=>`<div class="sitem"><div class="sdot"></div><div><div class="sname">${s.n}</div><div class="sdesc">${s.d}</div></div></div>`).join('')}</div>
@@ -794,10 +797,70 @@ function buildCompare(){
   // Compare data now shown in modal via buildCompareHtml()
 }
 
+/* Multi-language UI strings */
+var uiStrings = {
+  en: {
+    chooseCity:'Step 1 — Choose Your City',
+    natTitle:'National Universities',natBadge:'Government-funded · Lower tuition · No foreign surcharge',
+    privTitle:'Private Universities',privBadge:'Private · Higher prestige · More programs · English-track leaders',
+    costTitle:'Cost of Living',vibeTitle:'City Vibe & Lifestyle',
+    univTitle:'Universities in',applyBtn:'Apply ↗',
+    heroTitle:'Study in Korea',heroSub:'Your complete guide to Korean universities — tuition, scholarships, living costs & admissions for international students.',
+    searchPlaceholder:'Search universities, cities, programs...',
+    pros:'PROS',cons:'CONS',
+    footerNote:'All URLs, emails and phone numbers verified from official university websites as of June 2026.'
+  },
+  zh: {
+    chooseCity:'第一步 — 选择城市',
+    natTitle:'国立大学',natBadge:'政府资助 · 学费较低 · 无外国人附加费',
+    privTitle:'私立大学',privBadge:'私立 · 声誉更高 · 项目更多 · 英语授课领先',
+    costTitle:'生活费用',vibeTitle:'城市氛围与生活',
+    univTitle:'所在大学',applyBtn:'申请 ↗',
+    heroTitle:'韩国留学',heroSub:'韩国大学完整指南 — 学费、奖学金、生活费用及国际生入学信息。',
+    searchPlaceholder:'搜索大学、城市、专业...',
+    pros:'优势',cons:'劣势',
+    footerNote:'所有网址、电子邮件和电话号码均已于2026年6月从官方大学网站核实。'
+  },
+  vi: {
+    chooseCity:'Bước 1 — Chọn Thành Phố',
+    natTitle:'Đại học Công lập',natBadge:'Do nhà nước tài trợ · Học phí thấp hơn · Không phụ thu người nước ngoài',
+    privTitle:'Đại học Tư thục',privBadge:'Tư thục · Uy tín cao · Nhiều chương trình · Dạy bằng tiếng Anh',
+    costTitle:'Chi phí sinh hoạt',vibeTitle:'Phong cách sống',
+    univTitle:'Trường đại học tại',applyBtn:'Đăng ký ↗',
+    heroTitle:'Du học Hàn Quốc',heroSub:'Hướng dẫn đầy đủ về đại học Hàn Quốc — học phí, học bổng, chi phí sinh hoạt & nhập học cho sinh viên quốc tế.',
+    searchPlaceholder:'Tìm trường, thành phố, ngành học...',
+    pros:'ƯU ĐIỂM',cons:'NHƯỢC ĐIỂM',
+    footerNote:'Tất cả URL, email và số điện thoại đã được xác minh từ trang web chính thức vào tháng 6 năm 2026.'
+  }
+};
+var currentLang = 'en';
+
 function setLang(l,btn){
   document.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
-  if(l!=='en')alert({'zh':'中文版本即将推出。所有信息均已从官方大学网站核实。','vi':'Phiên bản tiếng Việt sắp ra mắt. Mọi thông tin đã được xác minh từ trang web chính thức.'}[l]);
+  currentLang = l;
+  var s = uiStrings[l] || uiStrings.en;
+  // Hero
+  var h1 = document.querySelector('.hero h1');
+  var hp = document.querySelector('.hero p');
+  if(h1) h1.textContent = s.heroTitle;
+  if(hp) hp.textContent = s.heroSub;
+  // Search placeholder
+  var si = document.getElementById('searchInput');
+  if(si) si.placeholder = s.searchPlaceholder;
+  // Section headings
+  var cityHdr = document.querySelector('#citySection .city-header h2');
+  if(cityHdr) cityHdr.textContent = s.chooseCity;
+  var natH = document.querySelector('#natSec h2');
+  if(natH) natH.textContent = '🏛 ' + s.natTitle;
+  var natB = document.querySelector('#natSec .sec-badge');
+  if(natB) natB.textContent = s.natBadge;
+  var privH = document.querySelector('#privSec h2');
+  if(privH) privH.textContent = '🏫 ' + s.privTitle;
+  var privB = document.querySelector('#privSec .sec-badge');
+  if(privB) privB.textContent = s.privBadge;
+  // Re-render city cards & grids with new language
+  filterAll();
 }
 
 
@@ -824,8 +887,8 @@ const finderQuestions = [
     id:'budget', label:'What is your annual tuition budget?', icon:'💰',
     options:[
       {v:'low',    label:'Under ₩5,000,000',  sub:'National universities'},
-      {v:'mid',    label:'₩5M – ₩9,000,000',  sub:'Mid-range private'},
-      {v:'high',   label:'₩9M – ₩14,000,000', sub:'Top private universities'},
+      {v:'mid',    label:'$3,704–$6,667',  sub:'Mid-range private'},
+      {v:'high',   label:'$6,667–$10,370', sub:'Top private universities'},
       {v:'any',    label:'No budget limit',    sub:'Best fit overall'},
     ]
   },
@@ -1024,7 +1087,7 @@ function renderFinderResultCards() {
   // 선택 요약
   var summaryMap = {
     goal:     { degree_ug:'Undergraduate', degree_grad:'Graduate/Research', language:'Language First', exchange:'Exchange' },
-    budget:   { low:'Under ₩5M', mid:'₩5M–9M', high:'₩9M–14M', any:'Any budget' },
+    budget:   { low:'Under ₩5M', mid:'$3,704–$6,667', high:'$6,667–$10,370', any:'Any budget' },
     field:    { engineering:'Engineering/IT', science:'Science', business:'Business', humanities:'Humanities', medicine:'Medicine', any:'Any field' },
     city:     { seoul:'Seoul', busan:'Busan', daejeon:'Daejeon', daegu:'Daegu', incheon:'Incheon', jeolla:'Gwangju/Jeonju', any:'Anywhere' },
     priority: { ranking:'World Ranking', english:'English Programs', scholarship:'GKS Scholarship', affordable:'Low Tuition', research:'Research', campus:'Campus Life' },
@@ -1039,7 +1102,7 @@ function renderFinderResultCards() {
     if (!v || v.includes('확인')) return 'TBC';
     if (v.includes('FREE')) return 'FREE';
     var n = parseInt(v.replace(/,/g,''));
-    return '\u20A9' + n.toLocaleString() + ' (~$' + Math.round(n/USD_RATE).toLocaleString() + ')';
+    return '$' + Math.round(n/USD_RATE).toLocaleString();
   }
 
   var medals = ['🥇','🥈','🥉'];
@@ -1107,34 +1170,44 @@ function renderFinderResultCards() {
 }
 
 
+/* ===== QS RANKING STRIP ===== */
+function renderQsStrip(){
+  var data = [...universities]
+    .filter(function(u){ return u.qs.indexOf('Not') < 0; })
+    .sort(function(a,b){
+      function n(x){var m=x.match(/\d+/);return m?parseInt(m[0]):9999;}
+      return n(a.qs)-n(b.qs);
+    });
+  var chips = data.map(function(u){
+    return '<span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border-radius:20px;padding:4px 14px;margin:0 3px;font-size:12px;flex-shrink:0;white-space:nowrap">'
+      +'<span style="font-weight:700;color:var(--gold)">'+u.qs+'</span>'
+      +'<span style="color:rgba(255,255,255,.85)">'+u.abbr+'</span>'
+      +'</span>';
+  }).join('');
+
+  var stripHtml = '<div style="background:var(--navy);color:#fff;padding:.7rem 1.5rem;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch" id="qsStrip">'
+    +'<span style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-right:12px">QS World 2026</span>'
+    +'<span style="color:rgba(255,255,255,.25);margin-right:8px">|</span>'
+    + chips
+    +'</div>';
+
+  // citySection 바로 앞에 삽입
+  var cityEl = document.getElementById('citySection');
+  if (cityEl) {
+    var div = document.createElement('div');
+    div.innerHTML = stripHtml;
+    cityEl.parentNode.insertBefore(div.firstChild, cityEl);
+  }
+}
+
 /* INIT */
 renderCities();
 buildFilters();
 filterAll();
 buildCompare();
+renderQsStrip();
 
-/* QS Strip */
-(function(){
-  var sorted = [...universities]
-    .filter(function(u){ return !u.qs.includes('Not'); })
-    .sort(function(a,b){
-      function n(x){var m=x.match(/\d+/);return m?parseInt(m[0]):9999;}
-      return n(a.qs)-n(b.qs);
-    });
-  var inner = document.getElementById('qsStripInner');
-  sorted.forEach(function(u){
-    var chip = document.createElement('span');
-    chip.className = 'qs-chip';
-    chip.innerHTML = '<span class="qs-rank">'+u.qs+'</span><span class="qs-name">'+u.abbr+'</span>';
-    inner.appendChild(chip);
-  });
-  // Drag scroll
-  var el = inner, isDown=false, startX, scrollL;
-  el.addEventListener('mousedown',function(e){isDown=true;el.style.cursor='grabbing';startX=e.pageX-el.offsetLeft;scrollL=el.scrollLeft;});
-  el.addEventListener('mouseleave',function(){isDown=false;el.style.cursor='grab';});
-  el.addEventListener('mouseup',function(){isDown=false;el.style.cursor='grab';});
-  el.addEventListener('mousemove',function(e){if(!isDown)return;e.preventDefault();var x=e.pageX-el.offsetLeft;el.scrollLeft=scrollL-(x-startX);});
-})();
+
 
 </script>
 
@@ -1244,7 +1317,7 @@ return `
       <h4 style="color:var(--navy);margin:1.6rem 0 .8rem;font-size:15px;">National Health Insurance (NHIS) — Mandatory</h4>
       <div style="background:#E8F5E9;border-radius:8px;padding:1rem;font-size:13px;border-left:3px solid #2E7D32;">
         <strong style="color:#1B5E20;">Mandatory since 2021</strong> — All international students staying 6+ months must enroll.<br>
-        Monthly premium approx. <strong>&#8361;76,390</strong> (2025) · Non-payment may result in visa extension denial.<br>
+        Monthly premium approx. <strong>~$57 USD</strong> (₩76,390, 2025) · Non-payment may result in visa extension denial.<br>
         D-2: from ARC registration date · D-4: from 6 months after entry
       </div>
 
@@ -1348,7 +1421,7 @@ const modalContent = {
       <h4 style="color:var(--navy);font-size:15px;margin:0 0 .8rem;">What's Covered</h4>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-bottom:1.5rem;">
         <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">📚</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Tuition</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">100% fully covered</div></div>
-        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">💵</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Monthly Allowance</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">UG: ₩900,000/mo<br>Graduate: ₩1,000,000/mo</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">💵</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Monthly Allowance</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">UG: $667/mo (₩900,000)<br>Graduate: $741/mo (₩1,000,000)</div></div>
         <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">✈️</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Round-trip Airfare</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">Fully covered</div></div>
         <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">🗣️</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Korean Language</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">1-year training before degree</div></div>
         <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">🏥</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Medical Insurance</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">NHIS covered</div></div>
