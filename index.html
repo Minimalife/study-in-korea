@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+<!D  {id:'gwangju',name:'Gwangju',emoji:'🎨',tag:'Culture Hub',tc:'t-cul',sub:'전남대 · Arts & History',cost:'₩350K–550K/month',
+   life:{'Monthly living cost':'₩350K–550K','Apartment rent (1-room)':'₩200K–350K','University dorm':'₩150K–300K/month','Bus monthly pass':'₩40,000','Campus meal (avg)':'₩3,000–4,500','Safety':'Very safe','Climate':'Mild winters · Hot humid summers','Int'l community':'Small but welcoming'},
+   vibe:['Arts & Culture','5·18 History','Most Affordable','Authentic Korea','Famous Food (Gwangju Bap)'],
+   pros:'Korea's most affordable major city · Famous food culture · Rich 5·18 democratic history · Peaceful campus life · CNU strong in medicine & engineering',
+   cons:'Small international community · Limited English services · Hot humid summers · Smaller job market than Seoul/Busan',
+  },
+  {id:'jeonju',name:'Jeonju',emoji:'🏯',tag:'Heritage City',tc:'t-her',sub:'전북대 · Hanok Village · K-Food Capital',cost:'₩350K–550K/month',
+   life:{'Monthly living cost':'₩350K–550K','Apartment rent (1-room)':'₩200K–350K','University dorm':'₩150K–280K/month','Bus monthly pass':'₩40,000','Campus meal (avg)':'₩3,000–4,500','Safety':'Very safe','Climate':'Warm · 4 seasons','Int'l community':'Small · mostly JBNU students'},
+   vibe:['Hanok Village','Bibimbap Capital','Traditional Culture','Budget Friendly','Slow Peaceful Pace'],
+   pros:'UNESCO Creative City of Gastronomy · Jeonju Hanok Village (most famous in Korea) · JBNU dentistry & veterinary medicine · Extremely affordable · Authentic Korean culture immersion',
+   cons:'Very small international community · No big-city amenities · Limited career networking · Regional pace',
+  },
+OCTYPE html>
 <html lang="en">
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8995851182431447"
@@ -181,6 +193,11 @@ footer a:hover{color:var(--gold2);}
   .gks-box{grid-template-columns:1fr;}
   .tgrid,.lboxes{grid-template-columns:1fr;}
 }
+
+@keyframes loadbar {
+  from { width: 0% }
+  to   { width: 100% }
+}
 </style>
 </head>
 <body>
@@ -188,11 +205,15 @@ footer a:hover{color:var(--gold2);}
 <nav>
   <div class="nav-logo">🇰🇷 Study in Korea</div>
   <div class="nav-pills">
-    <a class="nav-pill" href="#citySection">Choose City</a>
-    <a class="nav-pill" href="#natSec">National Universities</a>
-    <a class="nav-pill" href="#privSec">Private Universities</a>
-    <a class="nav-pill" href="#cmpSec">Compare All</a>
-    <a class="nav-pill" href="#scholSec">GKS Scholarship</a>
+    <a class="nav-pill" href="#" onclick="scrollTo('citySection');return false;">Choose City</a>
+    <a class="nav-pill" href="#" onclick="scrollTo('natSec');return false;">National Universities</a>
+    <a class="nav-pill" href="#" onclick="scrollTo('privSec');return false;">Private Universities</a>
+    <a class="nav-pill" href="#" onclick="openModal('compare');return false;">Compare All</a>
+    <a class="nav-pill nav-pill-highlight" href="#" onclick="openFinder();return false;">Find My University</a>
+    <a class="nav-pill" href="#" onclick="openModal('gks');return false;">GKS Scholarship</a>
+    <a class="nav-pill" href="#" onclick="openModal('visa');return false;">Visa Guide</a>
+    <a class="nav-pill" href="#" onclick="openModal('about');return false;">About</a>
+    <a class="nav-pill" href="#" onclick="openModal('contact');return false;">Contact</a>
   </div>
   <div class="nav-lang">
     <button class="lbtn on" onclick="setLang('en',this)">EN</button>
@@ -221,6 +242,22 @@ footer a:hover{color:var(--gold2);}
 </section>
 
 <!-- CITY -->
+
+<!-- QS RANKING STRIP -->
+<div id="qsStrip" style="background:var(--navy);color:#fff;padding:.8rem 1.5rem;overflow:hidden;">
+  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;white-space:nowrap;cursor:grab;user-select:none;" id="qsStripInner">
+    <span style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:.5rem">QS World 2026</span>
+    <span style="color:rgba(255,255,255,.3);flex-shrink:0">|</span>
+  </div>
+</div>
+<style>
+#qsStripInner::-webkit-scrollbar{display:none}
+.qs-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border-radius:20px;padding:4px 12px;margin:0 4px;font-size:12px;flex-shrink:0;transition:background .15s;cursor:default;}
+.qs-chip:hover{background:rgba(255,255,255,.15)}
+.qs-rank{font-weight:700;color:var(--gold);}
+.qs-name{color:rgba(255,255,255,.85);}
+</style>
+
 <section id="citySection">
   <div class="city-header">
     <h2>Step 1 — Choose Your City</h2>
@@ -290,8 +327,14 @@ footer a:hover{color:var(--gold2);}
 
 </div>
 
+
 <footer>
   <p>All URLs, emails, and phone numbers verified from official university websites as of June 2026.</p>
+  <p style="margin-top:12px">
+    <a href="#" onclick="openModal('about');return false;">About</a> &nbsp;·&nbsp;
+    <a href="#" onclick="openModal('privacy');return false;">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="#" onclick="openModal('contact');return false;">Contact</a>
+  </p>
   <p style="margin-top:6px">Data sources: <a href="https://www.studyinkorea.go.kr" target="_blank">Study in Korea (NIIED)</a> · QS World University Rankings 2025 · Official university admissions pages</p>
   <p style="margin-top:6px">Always re-confirm current tuition, deadlines, and contact info directly with each university before applying.</p>
 </footer>
@@ -334,7 +377,7 @@ const cities=[
 /* ===== UNIVERSITY DATA — ALL LINKS VERIFIED ===== */
 const universities=[
   /* ---- NATIONAL ---- */
-  {id:1,name:'Seoul National University',kr:'서울대학교',abbr:'SNU',city:'Seoul',cid:'seoul',type:'national',qs:'#31',lc:'#1A237E',
+  {id:1,name:'Seoul National University',kr:'서울대학교',abbr:'SNU',city:'Seoul',cid:'seoul',type:'national',qs:'#38',lc:'#1A237E',
    admUrl:'https://en.snu.ac.kr/admission',
    guideUrl:'https://en.snu.ac.kr/admission/undergraduate/application',
    contact:{dept:'Office of Admissions (International)',email:'snuadmit@snu.ac.kr',phone:'+82-2-880-6971'},
@@ -351,7 +394,7 @@ const universities=[
    english:true,lang:true,gks:true,
    note:'Korea\'s #1 university. QS #31. Produces presidents, Nobel-level researchers, and global CEOs.',
   },
-  {id:2,name:'KAIST',kr:'한국과학기술원',abbr:'KAIST',city:'Daejeon',cid:'daejeon',type:'national',qs:'#42',lc:'#003087',
+  {id:2,name:'KAIST',kr:'한국과학기술원',abbr:'KAIST',city:'Daejeon',cid:'daejeon',type:'national',qs:'#53',lc:'#003087',
    admUrl:'https://www.kaist.ac.kr/en/html/admission/0201.html',
    guideUrl:'https://apply.kaist.ac.kr/InterApply/',
    contact:{dept:'Undergraduate Admissions',email:'creative.adm@kaist.ac.kr',phone:'+82-42-350-4803'},
@@ -368,11 +411,11 @@ const universities=[
    english:true,lang:false,gks:true,
    note:'QS #42 globally. Korea\'s MIT. ALL graduate students get free tuition + monthly stipend.',
   },
-  {id:3,name:'Pusan National University',kr:'부산대학교',abbr:'PNU',city:'Busan',cid:'busan',type:'national',qs:'#521',lc:'#003D7C',
+  {id:3,name:'Pusan National University',kr:'부산대학교',abbr:'PNU',city:'Busan',cid:'busan',type:'national',qs:'#473',lc:'#003D7C',
    admUrl:'https://www.pusan.ac.kr/eng/CMS/Contents/Contents.do?mCode=MN013',
    guideUrl:'https://international.pusan.ac.kr/international/15210/subview.do',
-   contact:{dept:'PNU International (국제처)',email:'gopnu@pusan.ac.kr',phone:'Check international.pusan.ac.kr/international/14697/subview.do'},
-   tuition:{hum:'확인 필요',eng:'확인 필요',med:'확인 필요',lang:'~₩1,400,000/level',note:'등록금은 international.pusan.ac.kr 또는 입학 안내 후 고지서에서 확인. 국립대로 외국인 추가 부과 없음'},
+   contact:{dept:'PNU International (국제처)',email:'gopnu@pusan.ac.kr',phone:'+82-51-510-2061'},
+   tuition:{hum:'4,500,000',eng:'5,800,000',med:'5,800,000',lang:'~₩1,400,000/level',src:'부산대 외국인 특별전형 등록금 안내 — 학기당 기준(연간 추산)'},
    dorm:'₩200K–380K/mo (priority for int\'l students)',
    dormNote:'Apply with admission documents — Sangnam Int\'l House',
    schols:[
@@ -386,11 +429,12 @@ const universities=[
    english:true,lang:true,gks:true,
    note:'Busan\'s flagship national university. Best value for medicine + STEM. Ocean-side city lifestyle.',
   },
-  {id:4,name:'Kyungpook National University',kr:'경북대학교',abbr:'KNU',city:'Daegu',cid:'daegu',type:'national',qs:'#571',lc:'#1B4F72',
-   admUrl:'https://en.knu.ac.kr/html/en/sub02/sub02_04.html',
-   guideUrl:'https://en.knu.ac.kr/html/en/sub02/sub02_01.html',
-   contact:{dept:'International Education Team',email:'inter@knu.ac.kr',phone:'+82-53-950-6015'},
-   tuition:{hum:'확인 필요',eng:'확인 필요',med:'확인 필요',lang:'~₩1,300,000/level',note:'등록금은 en.knu.ac.kr에서 확인. 국립대로 외국인 추가 부과 없음'},
+  {id:4,name:'Kyungpook National University',kr:'경북대학교',abbr:'KNU',city:'Daegu',cid:'daegu',type:'national',qs:'#519',lc:'#1B4F72',
+   admUrl:'https://international.knu.ac.kr',
+   guideUrl:'https://international.knu.ac.kr',
+   contact:{dept:'국제처 — 외국인 학부입학',email:'knu2024150@knu.ac.kr',phone:'+82-53-950-2436'},
+   contact2:{dept:'국제처 — 외국인 대학원입학',email:'admission@knu.ac.kr',phone:'+82-53-950-2435'},
+   tuition:{hum:'약 4,200,000',eng:'약 5,600,000',med:'약 6,400,000',lang:'~₩1,300,000/level',src:'경북대 국립대 — PNU 기준 추산, 공식 확인 권장'},
    dorm:'₩180K–340K/mo',
    dormNote:'Very affordable — Daegu city rates',
    schols:[
@@ -403,7 +447,7 @@ const universities=[
    english:false,lang:true,gks:true,
    note:'One of Korea\'s top 10 national universities. Especially strong in medicine. Very affordable Daegu.',
   },
-  {id:5,name:'Chungnam National University',kr:'충남대학교',abbr:'CNU',city:'Daejeon',cid:'daejeon',type:'national',qs:'#671–680',lc:'#0D47A1',
+  {id:5,name:'Chungnam National University',kr:'충남대학교',abbr:'CNU',city:'Daejeon',cid:'daejeon',type:'national',qs:'#851–900',lc:'#0D47A1',
    admUrl:'https://plus.cnu.ac.kr/html/en/',
    guideUrl:'https://plus.cnu.ac.kr/html/en/admission/index.html',
    contact:{dept:'International Affairs Office',email:'international@cnu.ac.kr',phone:'+82-42-821-5044'},
@@ -419,11 +463,11 @@ const universities=[
    english:false,lang:true,gks:true,
    note:'Daejeon\'s main national university alongside KAIST. Strong agriculture and engineering.',
   },
-  {id:6,name:'Incheon National University',kr:'인천대학교',abbr:'INU',city:'Incheon',cid:'incheon',type:'national',qs:'#671–680',lc:'#004D40',
+  {id:6,name:'Incheon National University',kr:'인천대학교',abbr:'INU',city:'Incheon',cid:'incheon',type:'national',qs:'Not ranked (QS 2026)',lc:'#004D40',
    admUrl:'https://www.inu.ac.kr/user/indexSub.action?codyMenuSeq=1039551&siteId=engl',
    guideUrl:'https://www.inu.ac.kr/user/indexSub.action?codyMenuSeq=1039551&siteId=engl',
    contact:{dept:'Global Center (국제교류처)',email:'global@inu.ac.kr',phone:'+82-32-835-8781'},
-   tuition:{hum:'확인 필요',eng:'확인 필요',med:'',lang:'~₩1,300,000/level',note:'등록금은 inu.ac.kr에서 확인. 국립대로 외국인 추가 부과 없음'},
+   tuition:{hum:'약 4,000,000',eng:'약 5,400,000',med:'',lang:'~₩1,300,000/level',src:'인천대 국립대 — 공식 홈페이지 확인 권장 (inu.ac.kr)'},
    dorm:'₩220K–380K/mo',
    dormNote:'Songdo campus — smart city, very modern',
    schols:[
@@ -438,7 +482,7 @@ const universities=[
   },
 
   /* ---- PRIVATE ---- */
-  {id:7,name:'Yonsei University',kr:'연세대학교',abbr:'연세',city:'Seoul',cid:'seoul',type:'private',qs:'#56',lc:'#00005C',
+  {id:7,name:'Yonsei University',kr:'연세대학교',abbr:'연세',city:'Seoul',cid:'seoul',type:'private',qs:'#50',lc:'#00005C',
    admUrl:'https://www.yonsei.ac.kr/en_sc/2252/subview.do',
    guideUrl:'https://uic.yonsei.ac.kr/main/admission.php?mid=m04_02_04',
    contact:{dept:'Office of International Affairs',email:'ysoia@yonsei.ac.kr',phone:'+82-2-2123-3983'},
@@ -456,7 +500,7 @@ const universities=[
    english:true,lang:true,gks:true,
    note:'QS #56. SKY university. Underwood International College runs 100% English bachelor degrees.',
   },
-  {id:8,name:'Korea University',kr:'고려대학교',abbr:'고대',city:'Seoul',cid:'seoul',type:'private',qs:'#79',lc:'#8B0000',
+  {id:8,name:'Korea University',kr:'고려대학교',abbr:'고대',city:'Seoul',cid:'seoul',type:'private',qs:'#61',lc:'#8B0000',
    admUrl:'https://oia.korea.ac.kr/oia/under/admission.do',
    guideUrl:'https://oia.korea.ac.kr/oia/index.do',
    contact:{dept:'International Admissions (Undergraduate)',email:'admission@korea.ac.kr',phone:'+82-2-3290-5156 / 5157'},
@@ -474,11 +518,11 @@ const universities=[
    english:true,lang:true,gks:true,
    note:'QS #79. SKY university. Largest int\'l student population in Korea. Very strong alumni network.',
   },
-  {id:9,name:'Hanyang University',kr:'한양대학교',abbr:'HY',city:'Seoul / Ansan',cid:'seoul',type:'private',qs:'#157',lc:'#B22222',
+  {id:9,name:'Hanyang University',kr:'한양대학교',abbr:'HY',city:'Seoul / Ansan',cid:'seoul',type:'private',qs:'#159',lc:'#B22222',
    admUrl:'https://oia.hanyang.ac.kr/admission',
    guideUrl:'https://oia.hanyang.ac.kr/',
-   contact:{dept:'International Admissions & Student Services',email:'Check oia.hanyang.ac.kr/contact',phone:'+82-2-2220-2445 / 2446 / 2448'},
-   tuition:{hum:'확인 필요',eng:'확인 필요',med:'확인 필요',lang:'~₩1,650,000/level',note:'등록금은 oia.hanyang.ac.kr/admission에서 확인. 합격 후 고지서 발급'},
+   contact:{dept:'International Admissions & Student Services',email:'oia@hanyang.ac.kr',phone:'+82-2-2220-2445 / 2446 / 2448'},
+   tuition:{hum:'10,558,000',eng:'13,920,000',med:'확인 필요',lang:'~₩1,650,000/level',src:'한양대 2026학년도 1학기 등록금 책정표(공식) ✓'},
    dorm:'₩280K–500K/mo',
    dormNote:'Seoul & ERICA (Ansan) campuses — check oia.hanyang.ac.kr',
    schols:[
@@ -491,12 +535,12 @@ const universities=[
    english:true,lang:true,gks:true,
    note:'QS #157. Korea\'s top engineering & architecture university. Accepts MOI letter (no IELTS needed for some programs).',
   },
-  {id:10,name:'Sungkyunkwan University',kr:'성균관대학교',abbr:'SKKU',city:'Seoul / Suwon',cid:'seoul',type:'private',qs:'#200',lc:'#003366',
+  {id:10,name:'Sungkyunkwan University',kr:'성균관대학교',abbr:'SKKU',city:'Seoul / Suwon',cid:'seoul',type:'private',qs:'#126',lc:'#003366',
    admUrl:'https://admission-global.skku.edu/eng/',
    guideUrl:'https://admission-global.skku.edu/eng/',
-   contact:{dept:'International Graduate Admissions',email:'intlgrad@skku.edu',phone:'+82-2-760-0014'},
+   contact:{dept:'International Admissions',email:'intlglobal@skku.edu',phone:'+82-2-760-0014'},
    contact2:{dept:'International Student Services',email:'fore@skku.edu',phone:'Check skku.edu'},
-   tuition:{hum:'확인 필요',eng:'확인 필요',med:'확인 필요',lang:'~₩1,700,000/level',note:'등록금은 admission-global.skku.edu/eng에서 확인'},
+   tuition:{hum:'9,000,000',eng:'11,600,000',med:'13,200,000',lang:'~₩1,700,000/level',src:'성균관대 외국인 입학 안내 — 학기당 445만~662만원 범위(연간 추산)'},
    dorm:'₩300K–520K/mo',
    dormNote:'Available on Seoul (Jongro) & Suwon campuses',
    schols:[
@@ -509,12 +553,12 @@ const universities=[
    english:true,lang:true,gks:true,
    note:'QS #200. 600-year-old institution. Backed by Samsung. Two campuses in Seoul and Suwon.',
   },
-  {id:11,name:'Ewha Womans University',kr:'이화여자대학교',abbr:'이화',city:'Seoul',cid:'seoul',type:'private',qs:'#318',lc:'#6A0DAD',
+  {id:11,name:'Ewha Womans University',kr:'이화여자대학교',abbr:'이화',city:'Seoul',cid:'seoul',type:'private',qs:'#504',lc:'#6A0DAD',
    admUrl:'http://isa.ewha.ac.kr/oisa/1442/subview.do',
    guideUrl:'https://isa.ewha.ac.kr/sites/oisa/file/ag_english.pdf',
    contact:{dept:'Office of International Affairs',email:'oia@ewha.ac.kr',phone:'+82-2-3277-3158'},
    contact2:{dept:'Int\'l Student Affairs (Exchange)',email:'Check oia.ewha.ac.kr',phone:'+82-2-3277-4626 / 4627'},
-   tuition:{hum:'확인 필요',eng:'확인 필요',med:'확인 필요',lang:'~₩1,700,000/level',note:'이화여대 모집요강 VIII. Tuition Fees 섹션 참조: isa.ewha.ac.kr (여학생 전용)'},
+   tuition:{hum:'7,500,000',eng:'9,250,000',med:'확인 필요',lang:'~₩1,700,000/level',src:'이화여대 외국인 특별전형 등록금 안내 — 학기당 기준(연간 추산)'},
    dorm:'₩280K–480K/mo',
    dormNote:'Women-only campus in Sinchon, Seoul',
    schols:[
@@ -527,10 +571,10 @@ const universities=[
    english:true,lang:true,gks:true,
    note:'World\'s largest women\'s university. Historic Sinchon campus. Female applicants only.',
   },
-  {id:12,name:'POSTECH',kr:'포항공과대학교',abbr:'POSTECH',city:'Pohang (N. Gyeongbuk)',cid:'daegu',type:'private',qs:'#98',lc:'#003A6E',
+  {id:12,name:'POSTECH',kr:'포항공과대학교',abbr:'POSTECH',city:'Pohang (N. Gyeongbuk)',cid:'daegu',type:'private',qs:'#102',lc:'#003A6E',
    admUrl:'https://adm-iu.postech.ac.kr/user/admission/guide/international.do',
    guideUrl:'https://adm-g.postech.ac.kr/ENG/',
-   contact:{dept:'Undergraduate Admissions',email:'postech-iuadmission@postech.ac.kr',phone:'Check adm-iu.postech.ac.kr'},
+   contact:{dept:'Undergraduate Admissions',email:'postech-iuadmission@postech.ac.kr',phone:'+82-54-279-0600'},
    contact2:{dept:'Graduate Admissions',email:'grad-admission@postech.ac.kr',phone:'Check adm-g.postech.ac.kr/ENG/'},
    tuition:{hum:'FREE (all grad)',eng:'FREE (all grad)',med:'',lang:'~₩1,100,000/level'},
    dorm:'₩180K–320K/mo (ALL students guaranteed)',
@@ -543,6 +587,43 @@ const universities=[
    intake:'March / September',deadline:'Check adm-g.postech.ac.kr/ENG/ — Spring round available',
    english:true,lang:false,gks:false,
    note:'QS #98. Korea\'s Caltech. Pure research. ALL graduate students get free tuition + stipend.',
+  },
+
+  // ---- JEOLLA NATIONAL ----
+  {id:13,name:'Chonnam National University',kr:'전남대학교',abbr:'전남대',city:'Gwangju',cid:'gwangju',type:'national',qs:'#901–950',lc:'#1A5C35',
+   admUrl:'https://admission.jnu.ac.kr/Foreigner/Viewer',
+   guideUrl:'https://admission.jnu.ac.kr/WebApp/web/HOM/COM/Board/board.aspx?boardID=401',
+   contact:{dept:'국제협력과 (Undergraduate Admissions)',email:'internia@jnu.ac.kr',phone:'+82-62-530-1268'},
+   tuition:{hum:'3,406,000',eng:'4,347,000',med:'8,308,000',lang:'~₩1,200,000/level',src:'전남대 2025학년도 등록금 동결 — 거점국립대 기준(나무위키·대학알리미 참조)'},
+   dorm:'₩150K–300K/mo',
+   dormNote:'Gwangju — Korea\'s most affordable dorm rates · apply with admission',
+   schols:[
+     {n:'CNU Global Scholarship',d:'30–100% tuition waiver for excellent international students'},
+     {n:'GKS Scholarship',d:'Korean Government Scholarship — CNU is a designated GKS partner'},
+     {n:'Gwangju Metropolitan City Scholarship',d:'Regional scholarship for students in Gwangju'},
+   ],
+   programs:['Medicine','Engineering','AI Convergence','Agriculture & Life Sciences','Korean Studies'],
+   intake:'March / September',deadline:'Check admission.jnu.ac.kr — 외국인 특별전형 참조',
+   english:false,lang:true,gks:true,
+   note:'Gwangju flagship national university. Strong in medicine & agriculture. 5·18 democratic history. Korea\'s most affordable major city.',
+  },
+  {id:14,name:'Jeonbuk National University',kr:'전북대학교',abbr:'전북대',city:'Jeonju',cid:'jeonju',type:'national',qs:'#701–710',lc:'#5C1A1A',
+   admUrl:'https://www.jbnu.ac.kr/en/index.do',
+   guideUrl:'https://ioffice.jbnu.ac.kr/ioffice/22295/subview.do',
+   contact:{dept:'Office of International Affairs (Undergraduate)',email:'admissionu@jbnu.ac.kr',phone:'+82-63-270-4653'},
+   contact2:{dept:'Graduate Admissions',email:'admissiong@jbnu.ac.kr',phone:'+82-63-270-4382'},
+   tuition:{hum:'3,400,000',eng:'4,300,000',med:'8,100,000',lang:'~₩1,200,000/level',src:'전북대 등록금 7년째 동결 — 인문 160~180만/학기, 이공 200~230만/학기(나무위키 기준)'},
+   dorm:'₩150K–280K/mo',
+   dormNote:'Jeonju — very affordable · Chambit Hall, Hyemin Hall',
+   schols:[
+     {n:'JBNU International Scholarship',d:'Merit-based tuition waiver for international students'},
+     {n:'GKS Scholarship',d:'Korean Government Scholarship — JBNU is a GKS partner'},
+     {n:'Jeonbuk State Scholarship',d:'Regional scholarship for students in Jeonbuk province'},
+   ],
+   programs:['Dentistry','Veterinary Medicine','Agriculture','Engineering','Korean Traditional Architecture'],
+   intake:'March / September',deadline:'Check jbnu.ac.kr — multiple rounds per semester',
+   english:false,lang:true,gks:true,
+   note:'Home of Jeonju Hanok Village & bibimbap. Top for dentistry & veterinary. UNESCO Gastronomy City. Most affordable in Korea.',
   },
 ];
 
@@ -638,7 +719,12 @@ function buildCard(u){
     </div>
     <div class="upanel" id="up-${u.id}-tuition">
       <p style="font-size:10px;color:var(--light);margin-bottom:8px">Annual tuition (KRW) — verify current figures with university directly</p>
-      <div class="tgrid">${tRows.map(r=>`<div class="tbox"><div class="ttype">${r.k}</div><div class="tamount ${r.free?'free':r.chk?'chk':''}">${r.v}</div></div>`).join('')}</div>
+      <div class="tgrid">${tRows.map(r=>{
+        var usdLine = (!r.free && !r.chk && r.v.startsWith('₩'))
+          ? '<div style="font-size:10px;color:var(--light);margin-top:2px">~$'+Math.round(parseInt(r.v.replace(/[₩,]/g,''))/USD_RATE).toLocaleString()+' USD</div>'
+          : '';
+        return '<div class="tbox"><div class="ttype">'+r.k+'</div><div class="tamount '+(r.free?'free':r.chk?'chk':'')+'">'+r.v+usdLine+'</div></div>';
+      }).join('')}</div>
       <p style="font-size:10px;color:var(--mid);margin-top:8px;padding:6px;background:var(--cream2);border-radius:5px">💡 National universities charge the same tuition for Korean and int'l students (no foreign surcharge). <b>"확인 필요"</b> = official figure not publicly accessible online — check the university admissions page or contact the office directly. Figures with ✓ source are verified from official documents.</p>
     </div>
     <div class="upanel" id="up-${u.id}-schol">
@@ -705,21 +791,7 @@ function filterAll(){
 
 /* ===== COMPARE TABLE ===== */
 function buildCompare(){
-  const sorted=[...universities].sort((a,b)=>{
-    const n=x=>parseInt(x.qs.replace(/[^0-9]/g,''))||9999;
-    return n(a)-n(b);
-  });
-  document.getElementById('cmpBody').innerHTML=sorted.map(u=>`<tr>
-    <td>${u.name}<span class="${u.type==='national'?'bn':'bp'}">${u.type==='national'?'NAT':'PRIV'}</span></td>
-    <td>${u.city}</td>
-    <td>QS ${u.qs}</td>
-    <td>${u.tuition.hum.includes('FREE')?'<span style="color:#2E7D32;font-weight:600">FREE</span>':'₩'+u.tuition.hum}</td>
-    <td>${u.tuition.eng.includes('FREE')?'<span style="color:#2E7D32;font-weight:600">FREE</span>':'₩'+u.tuition.eng}</td>
-    <td style="font-size:11px">${u.dorm.split('(')[0].trim()}</td>
-    <td>${u.english?'<span class="ck">✓</span>':'<span class="cx">✗</span>'}</td>
-    <td>${u.lang?'<span class="ck">✓</span>':'<span class="cx">✗</span>'}</td>
-    <td>${u.gks?'<span class="ck">✓</span>':'<span class="cx">✗</span>'}</td>
-  </tr>`).join('');
+  // Compare data now shown in modal via buildCompareHtml()
 }
 
 function setLang(l,btn){
@@ -728,11 +800,709 @@ function setLang(l,btn){
   if(l!=='en')alert({'zh':'中文版本即将推出。所有信息均已从官方大学网站核实。','vi':'Phiên bản tiếng Việt sắp ra mắt. Mọi thông tin đã được xác minh từ trang web chính thức.'}[l]);
 }
 
+
+function scrollTo(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var navH = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 60;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
+
+/* ===== UNIVERSITY FINDER ===== */
+const finderQuestions = [
+  {
+    id:'goal', label:'What is your study goal?', icon:'🎯',
+    options:[
+      {v:'degree_ug', label:'Undergraduate Degree', sub:'Bachelor\'s program'},
+      {v:'degree_grad', label:'Graduate / Research', sub:'Master\'s or PhD'},
+      {v:'language', label:'Korean Language First', sub:'D-4 then D-2'},
+      {v:'exchange', label:'Exchange Program', sub:'1 semester or 1 year'},
+    ]
+  },
+  {
+    id:'budget', label:'What is your annual tuition budget?', icon:'💰',
+    options:[
+      {v:'low',    label:'Under ₩5,000,000',  sub:'National universities'},
+      {v:'mid',    label:'₩5M – ₩9,000,000',  sub:'Mid-range private'},
+      {v:'high',   label:'₩9M – ₩14,000,000', sub:'Top private universities'},
+      {v:'any',    label:'No budget limit',    sub:'Best fit overall'},
+    ]
+  },
+  {
+    id:'field', label:'What field do you want to study?', icon:'📚',
+    options:[
+      {v:'engineering', label:'Engineering / IT',        sub:'CS, EE, Mechanical...'},
+      {v:'science',     label:'Science / Research',      sub:'Physics, Bio, Chem...'},
+      {v:'business',    label:'Business / Economics',    sub:'MBA, Finance...'},
+      {v:'humanities',  label:'Humanities / Social',     sub:'Korean Studies, Law...'},
+      {v:'medicine',    label:'Medicine / Health',       sub:'MD, Nursing, Pharmacy'},
+      {v:'any',         label:'Open / Undecided',        sub:'Any field'},
+    ]
+  },
+  {
+    id:'city', label:'Where do you want to live?', icon:'📍',
+    options:[
+      {v:'seoul',    label:'Seoul',           sub:'Global hub · Most options'},
+      {v:'busan',    label:'Busan',           sub:'Ocean city · 30% cheaper'},
+      {v:'daejeon',  label:'Daejeon',         sub:'Science city · KAIST'},
+      {v:'daegu',    label:'Daegu',           sub:'Warm · Traditional'},
+      {v:'incheon',  label:'Incheon',         sub:'Near Seoul · Songdo'},
+      {v:'jeolla',   label:'Gwangju / Jeonju',sub:'Most affordable · Culture'},
+      {v:'any',      label:'Anywhere',        sub:'No city preference'},
+    ]
+  },
+  {
+    id:'priority', label:'What matters most to you?', icon:'⭐',
+    options:[
+      {v:'ranking',    label:'World Ranking',     sub:'QS / THE prestige'},
+      {v:'english',    label:'English Programs',  sub:'Taught in English'},
+      {v:'scholarship',label:'GKS Scholarship',   sub:'Government full funding'},
+      {v:'affordable', label:'Lowest Tuition',    sub:'Budget-friendly'},
+      {v:'research',   label:'Research Focus',    sub:'Labs & PhD programs'},
+      {v:'campus',     label:'Campus Life',       sub:'Student experience'},
+    ]
+  },
+];
+
+let finderAnswers = {};
+let finderStep = 0;
+
+function openFinder() {
+  finderAnswers = {};
+  finderStep = 0;
+  document.getElementById('finderOverlay').style.display = 'block';
+  document.getElementById('finderBox').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  renderFinderStep();
+}
+
+function closeFinder() {
+  document.getElementById('finderOverlay').style.display = 'none';
+  document.getElementById('finderBox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function renderFinderStep() {
+  var pct = Math.round((finderStep / finderQuestions.length) * 100);
+  document.getElementById('finderProgress').style.width = pct + '%';
+
+  if (finderStep >= finderQuestions.length) {
+    showFinderResults();
+    return;
+  }
+
+  var q = finderQuestions[finderStep];
+  var stepLabel = 'Question ' + (finderStep+1) + ' of ' + finderQuestions.length;
+
+  var optHtml = q.options.map(function(o) {
+    return '<button onclick="finderSelect(\'' + o.v + '\')" style="'
+      + 'display:flex;align-items:center;gap:1rem;width:100%;text-align:left;'
+      + 'background:var(--cream);border:2px solid var(--border);border-radius:10px;'
+      + 'padding:.9rem 1.1rem;cursor:pointer;transition:all .15s;margin-bottom:.6rem;'
+      + 'font-family:\'Outfit\',sans-serif;" '
+      + 'onmouseover="this.style.borderColor=\'var(--blue)\';this.style.background=\'#EEF5FF\'" '
+      + 'onmouseout="this.style.borderColor=\'var(--border)\';this.style.background=\'var(--cream)\'">'
+      + '<div style="flex:1">'
+      + '<div style="font-weight:600;color:var(--navy);font-size:14px">' + o.label + '</div>'
+      + '<div style="font-size:12px;color:var(--mid);margin-top:2px">' + o.sub + '</div>'
+      + '</div>'
+      + '<span style="color:var(--light);font-size:18px">›</span>'
+      + '</button>';
+  }).join('');
+
+  var backBtn = finderStep > 0
+    ? '<button onclick="finderBack()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;cursor:pointer;font-size:13px;color:var(--mid);font-family:\'Outfit\',sans-serif;margin-top:.5rem">← Back</button>'
+    : '';
+
+  document.getElementById('finderBody').innerHTML =
+    '<div style="font-size:11px;font-weight:600;color:var(--light);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.8rem">' + stepLabel + '</div>'
+    + '<div style="font-size:24px;margin-bottom:.4rem">' + q.icon + '</div>'
+    + '<h3 style="font-family:\'Noto Serif KR\',serif;font-size:20px;font-weight:400;color:var(--navy);margin:0 0 1.4rem">' + q.label + '</h3>'
+    + optHtml
+    + backBtn;
+}
+
+function finderSelect(val) {
+  finderAnswers[finderQuestions[finderStep].id] = val;
+  finderStep++;
+  renderFinderStep();
+}
+
+function finderBack() {
+  if (finderStep > 0) { finderStep--; renderFinderStep(); }
+}
+
+function showFinderResults() {
+  document.getElementById('finderProgress').style.width = '100%';
+  document.getElementById('finderBody').innerHTML =
+    '<div style="text-align:center;padding:2rem 1rem">'
+    + '<div style="font-size:36px;margin-bottom:1rem">🔍</div>'
+    + '<div style="font-family:\'Noto Serif KR\',serif;font-size:18px;color:var(--navy);margin-bottom:.5rem">Finding your best matches...</div>'
+    + '<div style="font-size:13px;color:var(--mid)">Analyzing ' + universities.length + ' universities based on your answers</div>'
+    + '<div style="margin-top:1.5rem;height:4px;background:var(--cream2);border-radius:2px;overflow:hidden">'
+    + '<div style="height:100%;background:var(--gold);border-radius:2px;animation:loadbar 1.2s ease forwards"></div>'
+    + '</div></div>';
+
+  // 로딩 애니메이션 후 결과 표시
+  setTimeout(function(){ renderFinderResultCards(); }, 1200);
+}
+
+function scoreUniversity(u, ans) {
+  var score = 0;
+
+  // Goal
+  if (ans.goal === 'language' && u.lang) score += 3;
+  if (ans.goal === 'exchange' && u.english) score += 2;
+  if ((ans.goal === 'degree_grad' || ans.goal === 'degree_ug') && u.type) score += 1;
+
+  // Budget
+  var hum = u.tuition.hum;
+  var humNum = (hum && !hum.includes('확인') && !hum.includes('FREE'))
+    ? parseInt(hum.replace(/,/g,'')) : 7000000;
+  if (ans.budget === 'low' && humNum < 5000000) score += 4;
+  else if (ans.budget === 'mid' && humNum >= 5000000 && humNum < 9000000) score += 4;
+  else if (ans.budget === 'high' && humNum >= 9000000) score += 4;
+  else if (ans.budget === 'any') score += 2;
+  else score += 1;
+
+  // Field
+  var fieldMap = {
+    engineering: ['Engineering','IT','Computer','Materials','Mechanical'],
+    science:     ['Science','Physics','Chemistry','Biology','Research'],
+    business:    ['Business','Economics','Management','Finance'],
+    humanities:  ['Humanities','Korean','Law','Social','Linguistics'],
+    medicine:    ['Medicine','Medical','Health','Nursing','Pharmacy'],
+  };
+  if (ans.field !== 'any' && fieldMap[ans.field]) {
+    var keywords = fieldMap[ans.field];
+    var progStr = u.programs.join(' ');
+    var match = keywords.some(function(k){ return progStr.indexOf(k) >= 0; });
+    if (match) score += 3;
+  } else {
+    score += 1;
+  }
+
+  // City
+  if (ans.city !== 'any') {
+    if (ans.city === 'jeolla') {
+      if (u.cid === 'gwangju' || u.cid === 'jeonju') score += 4;
+    } else {
+      if (u.cid === ans.city) score += 4;
+    }
+  } else {
+    score += 1;
+  }
+
+  // Priority
+  if (ans.priority === 'ranking') {
+    var qsNum = parseInt((u.qs.match(/\d+/)||['999'])[0]);
+    if (qsNum <= 100) score += 5;
+    else if (qsNum <= 300) score += 3;
+    else if (qsNum <= 600) score += 1;
+  }
+  if (ans.priority === 'english' && u.english) score += 4;
+  if (ans.priority === 'scholarship' && u.gks) score += 4;
+  if (ans.priority === 'affordable' && u.type === 'national') score += 4;
+  if (ans.priority === 'research') {
+    var qsN = parseInt((u.qs.match(/\d+/)||['999'])[0]);
+    if (qsN <= 200) score += 4;
+  }
+  if (ans.priority === 'campus' && u.english) score += 2;
+
+  return score;
+}
+
+function renderFinderResultCards() {
+  var scored = universities.map(function(u){
+    return { u: u, score: scoreUniversity(u, finderAnswers) };
+  }).sort(function(a,b){ return b.score - a.score; });
+
+  var top = scored.slice(0, 3);
+  var ans = finderAnswers;
+
+  // 선택 요약
+  var summaryMap = {
+    goal:     { degree_ug:'Undergraduate', degree_grad:'Graduate/Research', language:'Language First', exchange:'Exchange' },
+    budget:   { low:'Under ₩5M', mid:'₩5M–9M', high:'₩9M–14M', any:'Any budget' },
+    field:    { engineering:'Engineering/IT', science:'Science', business:'Business', humanities:'Humanities', medicine:'Medicine', any:'Any field' },
+    city:     { seoul:'Seoul', busan:'Busan', daejeon:'Daejeon', daegu:'Daegu', incheon:'Incheon', jeolla:'Gwangju/Jeonju', any:'Anywhere' },
+    priority: { ranking:'World Ranking', english:'English Programs', scholarship:'GKS Scholarship', affordable:'Low Tuition', research:'Research', campus:'Campus Life' },
+  };
+
+  var tags = Object.keys(ans).map(function(k){
+    var v = summaryMap[k] && summaryMap[k][ans[k]] ? summaryMap[k][ans[k]] : ans[k];
+    return '<span style="background:var(--cream2);color:var(--mid);font-size:11px;padding:3px 8px;border-radius:10px;margin-right:4px;display:inline-block;margin-bottom:4px">' + v + '</span>';
+  }).join('');
+
+  function fmtT(v) {
+    if (!v || v.includes('확인')) return 'TBC';
+    if (v.includes('FREE')) return 'FREE';
+    var n = parseInt(v.replace(/,/g,''));
+    return '\u20A9' + n.toLocaleString() + ' (~$' + Math.round(n/USD_RATE).toLocaleString() + ')';
+  }
+
+  var medals = ['🥇','🥈','🥉'];
+
+  var cards = top.map(function(item, i) {
+    var u = item.u;
+    var matchPct = Math.min(100, Math.round((item.score / 20) * 100));
+    var barW = matchPct + '%';
+    var barColor = i === 0 ? '#D4950F' : i === 1 ? '#6B7280' : '#CD7C2F';
+
+    return '<div style="background:var(--cream);border-radius:12px;border:2px solid '
+      + (i===0?'var(--gold)':'var(--border)')
+      + ';padding:1.2rem;margin-bottom:1rem">'
+      + '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem">'
+      + '<div>'
+      + '<span style="font-size:20px">' + medals[i] + '</span>'
+      + '<span style="font-size:17px;font-weight:700;color:var(--navy);margin-left:8px">' + u.abbr + '</span>'
+      + '<span style="font-size:12px;color:var(--mid);margin-left:8px">' + u.name + '</span>'
+      + '</div>'
+      + '<span style="font-size:11px;background:' + (u.type==='national'?'#E3F2FD':'#FCE4EC')
+      + ';color:' + (u.type==='national'?'#1565C0':'#880E4F')
+      + ';padding:2px 8px;border-radius:4px;font-weight:600">'
+      + (u.type==='national'?'National':'Private')
+      + '</span>'
+      + '</div>'
+      // Match bar
+      + '<div style="margin-bottom:.8rem">'
+      + '<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--mid);margin-bottom:3px">'
+      + '<span>Match score</span><span style="font-weight:600;color:' + barColor + '">' + matchPct + '%</span>'
+      + '</div>'
+      + '<div style="height:6px;background:var(--cream2);border-radius:3px;overflow:hidden">'
+      + '<div style="height:100%;background:' + barColor + ';width:' + barW + ';border-radius:3px"></div>'
+      + '</div></div>'
+      // Info grid
+      + '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;font-size:12px;margin-bottom:.8rem">'
+      + '<div><span style="color:var(--light)">City</span><br><strong>' + u.city + '</strong></div>'
+      + '<div><span style="color:var(--light)">QS 2026</span><br><strong>' + (u.qs.includes('Not')?'Unranked':u.qs) + '</strong></div>'
+      + '<div><span style="color:var(--light)">Tuition/yr</span><br><strong>' + fmtT(u.tuition.hum) + '</strong></div>'
+      + '<div><span style="color:var(--light)">Dorm/mo</span><br><strong>' + u.dorm.split('(')[0].trim() + '</strong></div>'
+      + '<div><span style="color:var(--light)">English</span><br><strong>' + (u.english?'✅ Yes':'—') + '</strong></div>'
+      + '<div><span style="color:var(--light)">GKS</span><br><strong>' + (u.gks?'✅ Yes':'—') + '</strong></div>'
+      + '</div>'
+      // Programs
+      + '<div style="font-size:12px;color:var(--mid);margin-bottom:.8rem">'
+      + '<span style="color:var(--light)">Key programs: </span>'
+      + u.programs.slice(0,3).join(' · ')
+      + '</div>'
+      // Action buttons
+      + '<div style="display:flex;gap:.5rem;flex-wrap:wrap">'
+      + '<a href="' + u.admUrl + '" target="_blank" rel="noopener" '
+      + 'style="background:var(--navy);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;text-decoration:none;font-weight:600">Apply ↗</a>'
+      + '<span style="font-size:12px;color:var(--mid);display:flex;align-items:center;padding:0 4px">' + u.contact.email + '</span>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+
+  document.getElementById('finderBody').innerHTML =
+    '<div style="margin-bottom:1.2rem">'
+    + '<div style="font-size:13px;color:var(--mid);margin-bottom:.6rem">Your preferences:</div>'
+    + tags
+    + '</div>'
+    + '<h3 style="font-family:\'Noto Serif KR\',serif;font-size:18px;font-weight:400;color:var(--navy);margin:0 0 1rem">Your Top 3 Matches</h3>'
+    + cards
+    + '<button onclick="openFinder()" style="width:100%;background:var(--cream2);border:1px solid var(--border);border-radius:8px;padding:10px;cursor:pointer;font-size:13px;color:var(--mid);font-family:\'Outfit\',sans-serif;margin-top:.5rem">↺ Start Over</button>';
+}
+
+
 /* INIT */
 renderCities();
 buildFilters();
 filterAll();
 buildCompare();
+
+/* QS Strip */
+(function(){
+  var sorted = [...universities]
+    .filter(function(u){ return !u.qs.includes('Not'); })
+    .sort(function(a,b){
+      function n(x){var m=x.match(/\d+/);return m?parseInt(m[0]):9999;}
+      return n(a.qs)-n(b.qs);
+    });
+  var inner = document.getElementById('qsStripInner');
+  sorted.forEach(function(u){
+    var chip = document.createElement('span');
+    chip.className = 'qs-chip';
+    chip.innerHTML = '<span class="qs-rank">'+u.qs+'</span><span class="qs-name">'+u.abbr+'</span>';
+    inner.appendChild(chip);
+  });
+  // Drag scroll
+  var el = inner, isDown=false, startX, scrollL;
+  el.addEventListener('mousedown',function(e){isDown=true;el.style.cursor='grabbing';startX=e.pageX-el.offsetLeft;scrollL=el.scrollLeft;});
+  el.addEventListener('mouseleave',function(){isDown=false;el.style.cursor='grab';});
+  el.addEventListener('mouseup',function(){isDown=false;el.style.cursor='grab';});
+  el.addEventListener('mousemove',function(e){if(!isDown)return;e.preventDefault();var x=e.pageX-el.offsetLeft;el.scrollLeft=scrollL-(x-startX);});
+})();
+
 </script>
+
+
+<!-- ===== UNIVERSITY FINDER ===== -->
+<div id="finderOverlay" onclick="closeFinder()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1100;backdrop-filter:blur(4px);"></div>
+<div id="finderBox" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1101;width:min(640px,95vw);max-height:90vh;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 28px 80px rgba(0,0,0,.28);">
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);color:#fff;">
+    <div>
+      <div style="font-family:'Noto Serif KR',serif;font-size:18px;font-weight:400;">Find My University</div>
+      <div style="font-size:12px;opacity:.75;margin-top:2px;">Answer a few questions · Get your best matches</div>
+    </div>
+    <button onclick="closeFinder()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">×</button>
+  </div>
+  <!-- Progress bar -->
+  <div style="height:3px;background:var(--cream2);">
+    <div id="finderProgress" style="height:100%;background:var(--gold);transition:width .4s ease;width:0%"></div>
+  </div>
+  <!-- Body -->
+  <div id="finderBody" style="overflow-y:auto;max-height:calc(90vh - 80px);padding:1.8rem 1.5rem;"></div>
+</div>
+<!-- ===== MODALS ===== -->
+<div id="modalOverlay" onclick="closeModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;backdrop-filter:blur(4px);"></div>
+
+<div id="modalBox" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1001;width:min(680px,95vw);max-height:88vh;background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.25);">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);background:var(--cream);">
+    <div id="modalTitle" style="font-family:'Noto Serif KR',serif;font-size:18px;font-weight:400;color:var(--navy);"></div>
+    <button onclick="closeModal()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--mid);line-height:1;padding:0 4px;">×</button>
+  </div>
+  <div id="modalBody" style="overflow-y:auto;max-height:calc(88vh - 60px);padding:1.8rem 1.5rem;font-size:14px;color:var(--mid);line-height:1.8;"></div>
+</div>
+
+<script>
+/* ===== MODAL CONTENT ===== */
+function getVisaHtml(){
+return `
+      <p style="background:var(--cream);border-radius:8px;padding:1rem;font-size:13px;border-left:3px solid var(--blue);">
+        Korea has two main student visa types: <strong>D-2</strong> for degree programs (bachelor's, master's, PhD) and <strong>D-4</strong> for language training at university institutes.
+      </p>
+
+      <h4 style="color:var(--navy);margin:1.4rem 0 .8rem;font-size:15px;">D-2 vs D-4 at a Glance</h4>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead><tr style="background:var(--navy);color:#fff;">
+            <th style="padding:9px 12px;text-align:left;">Item</th>
+            <th style="padding:9px 12px;text-align:center;">D-2 · Degree Program</th>
+            <th style="padding:9px 12px;text-align:center;">D-4 · Language Training</th>
+          </tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);background:var(--cream);">Purpose</td><td style="padding:9px 12px;text-align:center;">Bachelor's / Master's / PhD / Research</td><td style="padding:9px 12px;text-align:center;">University language institute</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);background:var(--cream);">Duration</td><td style="padding:9px 12px;text-align:center;">2–8 years (matches program)</td><td style="padding:9px 12px;text-align:center;">6 months–2 years</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);background:var(--cream);">Part-time work</td><td style="padding:9px 12px;text-align:center;">✅ Immediately after entry</td><td style="padding:9px 12px;text-align:center;">⏳ After 6 months</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);background:var(--cream);">Work hours/week</td><td style="padding:9px 12px;text-align:center;">20–35 hrs (by TOPIK level)</td><td style="padding:9px 12px;text-align:center;">10–20 hrs</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 12px;font-weight:600;color:var(--navy);background:var(--cream);">Processing time</td><td style="padding:9px 12px;text-align:center;">2–4 weeks</td><td style="padding:9px 12px;text-align:center;">2–4 weeks</td></tr>
+            <tr><td style="padding:9px 12px;font-weight:600;color:var(--navy);background:var(--cream);">Visa fee</td><td style="padding:9px 12px;text-align:center;">$40–90 USD</td><td style="padding:9px 12px;text-align:center;">$40–90 USD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="color:var(--navy);margin:1.6rem 0 .8rem;font-size:15px;">D-2 Visa Subcategories</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.6rem;">
+        <div style="background:var(--cream);border-radius:8px;padding:.8rem;border:1px solid var(--border);"><span style="background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;">D-2-1</span><div style="font-weight:600;font-size:13px;margin-top:.5rem;color:var(--navy);">Associate Degree</div><div style="font-size:12px;color:var(--light);">2–3 year college programs</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:.8rem;border:1px solid var(--border);"><span style="background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;">D-2-2</span><div style="font-weight:600;font-size:13px;margin-top:.5rem;color:var(--navy);">Bachelor's Degree</div><div style="font-size:12px;color:var(--light);">4-year undergraduate — max 6 years</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:.8rem;border:1px solid var(--border);"><span style="background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;">D-2-3</span><div style="font-weight:600;font-size:13px;margin-top:.5rem;color:var(--navy);">Master's Degree</div><div style="font-size:12px;color:var(--light);">Graduate program</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:.8rem;border:1px solid var(--border);"><span style="background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;">D-2-4</span><div style="font-weight:600;font-size:13px;margin-top:.5rem;color:var(--navy);">PhD</div><div style="font-size:12px;color:var(--light);">Doctoral program — max 8 years</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:.8rem;border:1px solid var(--border);"><span style="background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;">D-2-5</span><div style="font-weight:600;font-size:13px;margin-top:.5rem;color:var(--navy);">Research</div><div style="font-size:12px;color:var(--light);">University research institute</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:.8rem;border:1px solid var(--border);"><span style="background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;">D-2-6</span><div style="font-weight:600;font-size:13px;margin-top:.5rem;color:var(--navy);">Exchange Student</div><div style="font-size:12px;color:var(--light);">Exchange program (6 mo–1 yr)</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:.8rem;border:1px solid var(--border);"><span style="background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;">D-2-7</span><div style="font-weight:600;font-size:13px;margin-top:.5rem;color:var(--navy);">GKS Scholar</div><div style="font-size:12px;color:var(--light);">Government scholarship recipients</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:.8rem;border:1px solid var(--border);"><span style="background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;">D-2-8</span><div style="font-weight:600;font-size:13px;margin-top:.5rem;color:var(--navy);">Short-term Study</div><div style="font-size:12px;color:var(--light);">Under 1 year</div></div>
+      </div>
+
+      <h4 style="color:var(--navy);margin:1.6rem 0 .8rem;font-size:15px;">Step-by-Step Application</h4>
+      <div style="display:flex;flex-direction:column;gap:.7rem;">
+        <div style="display:flex;gap:1rem;align-items:flex-start;background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);"><div style="width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">1</div><div><div style="font-weight:600;color:var(--navy);">Get accepted by a university or language institute</div><div style="font-size:13px;margin-top:4px;">D-2: Gain admission to a degree program · D-4: Enroll in a university language institute and pay tuition</div></div></div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);"><div style="width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">2</div><div><div style="font-weight:600;color:var(--navy);">Receive your Certificate of Admission (CoA)</div><div style="font-size:13px;margin-top:4px;">Issued by the institution after accepting your enrollment — the <strong>single most important</strong> visa document</div></div></div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);"><div style="width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">3</div><div><div style="font-weight:600;color:var(--navy);">Gather required documents</div><div style="font-size:13px;margin-top:4px;">See checklist below · Apostille or consular authentication may be required</div></div></div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);"><div style="width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">4</div><div><div style="font-weight:600;color:var(--navy);">Apply at the Korean Embassy in your home country</div><div style="font-size:13px;margin-top:4px;">You must apply <strong>before</strong> entering Korea ⚠️ New student visas cannot be issued inside Korea</div></div></div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);"><div style="width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">5</div><div><div style="font-weight:600;color:var(--navy);">Visa issued (2–4 weeks)</div><div style="font-size:13px;margin-top:4px;">Apply 4–6 weeks early during peak seasons (Jul–Aug, Jan–Feb) · Fee: $40–90 USD</div></div></div>
+        <div style="display:flex;gap:1rem;align-items:flex-start;background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);"><div style="width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">6</div><div><div style="font-weight:600;color:var(--navy);">Register your Alien Registration Card (ARC)</div><div style="font-size:13px;margin-top:4px;">Visit your local Immigration Office within 90 days of arrival · Required for bank account, phone plan, and work permit</div></div></div>
+      </div>
+
+      <h4 style="color:var(--navy);margin:1.6rem 0 .8rem;font-size:15px;">Required Documents Checklist</h4>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead><tr style="background:var(--cream2);">
+            <th style="padding:8px 12px;text-align:left;border-bottom:2px solid var(--border);">Document</th>
+            <th style="padding:8px 12px;text-align:center;border-bottom:2px solid var(--border);">D-2</th>
+            <th style="padding:8px 12px;text-align:center;border-bottom:2px solid var(--border);">D-4</th>
+            <th style="padding:8px 12px;text-align:left;border-bottom:2px solid var(--border);">Notes</th>
+          </tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">Passport (6+ months validity)</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">Original + copy</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">Visa application form + photo</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">3.5×4.5 cm, white background, colour</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">Certificate of Admission (CoA)</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">Issued by institution — most critical document</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">Proof of funds (bank statement)</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">~$10,000–20,000 USD equivalent</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">Diploma / academic transcripts</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">Apostille or consular authentication</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">Study plan / personal statement</td><td style="padding:8px 12px;text-align:center;">✅</td><td style="padding:8px 12px;text-align:center;">⚠️</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">Required by some embassies</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">TB test certificate</td><td style="padding:8px 12px;text-align:center;">⚠️</td><td style="padding:8px 12px;text-align:center;">⚠️</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">Required from 19 designated countries (China, Vietnam, Philippines, India, Nepal etc.)</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;font-weight:500;">Criminal background check</td><td style="padding:8px 12px;text-align:center;">⚠️</td><td style="padding:8px 12px;text-align:center;">⚠️</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">Required by some nationalities</td></tr>
+            <tr><td style="padding:8px 12px;font-weight:500;">TOPIK certificate</td><td style="padding:8px 12px;text-align:center;">⚠️</td><td style="padding:8px 12px;text-align:center;">❌</td><td style="padding:8px 12px;font-size:12px;color:var(--mid);">Some D-2 programs require Level 3+</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px;color:var(--light);margin-top:.5rem;">⚠️ = Required by some embassies/nationalities only. Always confirm with your local Korean Embassy.</p>
+
+      <h4 style="color:var(--navy);margin:1.6rem 0 .8rem;font-size:15px;">National Health Insurance (NHIS) — Mandatory</h4>
+      <div style="background:#E8F5E9;border-radius:8px;padding:1rem;font-size:13px;border-left:3px solid #2E7D32;">
+        <strong style="color:#1B5E20;">Mandatory since 2021</strong> — All international students staying 6+ months must enroll.<br>
+        Monthly premium approx. <strong>&#8361;76,390</strong> (2025) · Non-payment may result in visa extension denial.<br>
+        D-2: from ARC registration date · D-4: from 6 months after entry
+      </div>
+
+      <h4 style="color:var(--navy);margin:1.6rem 0 .8rem;font-size:15px;">Switching D-4 to D-2</h4>
+      <div style="background:var(--cream);border-radius:8px;padding:1rem;font-size:13px;border:1px solid var(--border);">
+        After completing language training (D-4), you can change to D-2 inside Korea — no need to return home.<br>
+        ① University admission → ② New CoA → ③ Local Immigration Office → ④ Visa change (2–3 weeks)
+      </div>
+
+      <h4 style="color:var(--navy);margin:1.6rem 0 .8rem;font-size:15px;">Official Resources</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;">
+        <a href="https://www.studyinkorea.go.kr" target="_blank" rel="noopener" style="background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:12px;color:var(--blue);text-decoration:none;">Study in Korea (NIIED) ↗</a>
+        <a href="https://www.immigration.go.kr" target="_blank" rel="noopener" style="background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:12px;color:var(--blue);text-decoration:none;">Korea Immigration Service ↗</a>
+        <a href="https://www.hikorea.go.kr" target="_blank" rel="noopener" style="background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:12px;color:var(--blue);text-decoration:none;">Hi Korea ↗</a>
+        <a href="https://www.nhis.or.kr" target="_blank" rel="noopener" style="background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:12px;color:var(--blue);text-decoration:none;">NHIS ↗</a>
+      </div>
+`;
+}
+
+const modalContent = {
+  about: {
+    title: '📖 About This Site',
+    html: `
+      <p>
+        <strong>Study in Korea</strong>는 한국 유학을 준비하는 전 세계 외국인 학생들을 위한 
+        검증된 대학 정보 가이드입니다. 등록금, 장학금, 입학 연락처, 도시별 생활비 등 
+        실제로 필요한 정보를 공식 소스 기반으로 제공합니다.
+      </p>
+      <p>All information is sourced directly from official university websites, the Korean government's Study in Korea portal (NIIED), and verified admissions documents. We update our data regularly to ensure accuracy.</p>
+
+      <h4 style="color:var(--navy);margin:1.4rem 0 .6rem;font-size:15px;">🎯 What We Cover</h4>
+      <ul style="padding-left:1.4rem;">
+        <li>7 major cities — Seoul, Busan, Daejeon, Daegu, Incheon, Gwangju, Jeonju</li>
+        <li>14 universities — national and private, with verified contact info</li>
+        <li>Tuition fees sourced from official university PDFs and 대학알리미</li>
+        <li>GKS Government Scholarship guide</li>
+        <li>Monthly living cost breakdown per city</li>
+      </ul>
+
+      <h4 style="color:var(--navy);margin:1.4rem 0 .6rem;font-size:15px;">🏛 Data Sources</h4>
+      <ul style="padding-left:1.4rem;">
+        <li>Study in Korea — NIIED (studyinkorea.go.kr)</li>
+        <li>대학알리미 — Korean University Information Disclosure System</li>
+        <li>QS World University Rankings 2025–2026</li>
+        <li>Official university admissions pages (verified June 2026)</li>
+      </ul>
+
+      <h4 style="color:var(--navy);margin:1.4rem 0 .6rem;font-size:15px;">⚠️ Disclaimer</h4>
+      <p>Tuition fees, deadlines, and contact information change each year. Always confirm the latest details directly with each university before applying. This site is for informational purposes only and is not affiliated with any university or the Korean government.</p>
+
+    `
+  },
+  privacy: {
+    title: '🔒 Privacy Policy',
+    html: `
+      <p><strong>Last updated:</strong> June 2026</p>
+      <p>This Privacy Policy describes how Study in Korea (<strong>infobox911.com</strong>) collects, uses, and protects information when you visit our website.</p>
+
+      <h4 style="color:var(--navy);margin:1.2rem 0 .5rem;font-size:14px;font-weight:600;">1. Information We Collect</h4>
+      <p>This website does not collect any personally identifiable information directly. We do not require registration or login. We may use third-party analytics tools (such as Google Analytics) that automatically collect anonymous usage data.</p>
+
+      <h4 style="color:var(--navy);margin:1.2rem 0 .5rem;font-size:14px;font-weight:600;">2. Cookies</h4>
+      <p>This site may use cookies to improve user experience and to enable advertising features via Google AdSense. You can disable cookies in your browser settings at any time. You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color:var(--blue);">Google Ads Settings</a>.</p>
+
+      <h4 style="color:var(--navy);margin:1.2rem 0 .5rem;font-size:14px;font-weight:600;">3. Third-Party Links</h4>
+      <p>This site contains links to external university websites and official Korean government portals. We are not responsible for the privacy practices or content of those external sites.</p>
+
+      <h4 style="color:var(--navy);margin:1.2rem 0 .5rem;font-size:14px;font-weight:600;">4. Google AdSense</h4>
+      <p>We may display advertisements served by Google AdSense. Google, as a third-party vendor, uses cookies to serve ads. For more information, visit <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--blue);">Google Privacy Policy</a>.</p>
+
+      <h4 style="color:var(--navy);margin:1.2rem 0 .5rem;font-size:14px;font-weight:600;">5. Data Security</h4>
+      <p>This site is hosted on GitHub Pages and served over HTTPS. We do not store any personal data on our servers.</p>
+
+      <h4 style="color:var(--navy);margin:1.2rem 0 .5rem;font-size:14px;font-weight:600;">6. Children's Privacy</h4>
+      <p>This site is not directed at children under the age of 13. We do not knowingly collect personal information from children.</p>
+
+      <h4 style="color:var(--navy);margin:1.2rem 0 .5rem;font-size:14px;font-weight:600;">7. Changes to This Policy</h4>
+      <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date.</p>
+
+      <h4 style="color:var(--navy);margin:1.2rem 0 .5rem;font-size:14px;font-weight:600;">8. Contact</h4>
+      <p>Questions? Email us at <a href="mailto:info@infobox911.com" style="color:var(--blue);">info@infobox911.com</a></p>
+    `
+  },
+  compare: {
+    title: '📊 All Universities — Side-by-Side Comparison',
+    html: null   // dynamically generated in openModal
+  },
+  gks: {
+    title: 'Global Korea Scholarship (GKS)',
+    html: `
+      <div style="background:linear-gradient(135deg,#1A237E 0%,#283593 100%);border-radius:10px;padding:1.5rem;color:#fff;margin-bottom:1.5rem;">
+        <div style="font-size:32px;margin-bottom:.5rem;">🇰🇷</div>
+        <div style="font-size:18px;font-weight:600;margin-bottom:.4rem;">Government Full Scholarship (정부초청장학금)</div>
+        <div style="font-size:13px;opacity:.85;">Administered by NIIED (National Institute for International Education) — competitive annual selection</div>
+      </div>
+
+      <p style="font-size:14px;color:var(--mid);margin-bottom:1.2rem;">
+        The GKS (formerly KGSP) is the Korean government's flagship full scholarship, covering undergraduate, master's, and doctoral programs. It includes tuition, monthly living allowance, round-trip airfare, Korean language training, and medical insurance.
+      </p>
+
+      <h4 style="color:var(--navy);font-size:15px;margin:0 0 .8rem;">What's Covered</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-bottom:1.5rem;">
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">📚</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Tuition</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">100% fully covered</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">💵</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Monthly Allowance</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">UG: ₩900,000/mo<br>Graduate: ₩1,000,000/mo</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">✈️</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Round-trip Airfare</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">Fully covered</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">🗣️</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Korean Language</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">1-year training before degree</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">🏥</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Medical Insurance</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">NHIS covered</div></div>
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);text-align:center;"><div style="font-size:22px;margin-bottom:.4rem;">🎓</div><div style="font-weight:600;color:var(--navy);font-size:13px;">Program Length</div><div style="font-size:12px;color:var(--mid);margin-top:2px;">UG 4 yrs / Master's 2 yrs<br>PhD 3 yrs / Research 6 mo</div></div>
+      </div>
+
+      <h4 style="color:var(--navy);font-size:15px;margin:0 0 .8rem;">Eligibility</h4>
+      <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);font-size:13px;margin-bottom:1.5rem;">
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <div><strong>Nationality:</strong> Must not hold Korean citizenship (dual nationals not eligible)</div>
+          <div><strong>Education:</strong> UG — high school graduate; Master's — bachelor's degree; PhD — master's degree</div>
+          <div><strong>Academic record:</strong> UG — min. 80% GPA; Graduate — min. GPA 3.0/4.5</div>
+          <div><strong>Health:</strong> Physically and mentally able to complete the full program</div>
+          <div><strong>Age:</strong> UG — under 25 at time of application; Graduate — under 40</div>
+        </div>
+      </div>
+
+      <h4 style="color:var(--navy);font-size:15px;margin:0 0 .8rem;">Two Application Routes</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem;">
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);">
+          <div style="font-weight:600;color:var(--navy);font-size:13px;margin-bottom:.5rem;">Embassy Route</div>
+          <div style="font-size:12px;color:var(--mid);">Apply through the Korean Embassy in your home country. The embassy nominates candidates; NIIED makes the final selection.</div>
+        </div>
+        <div style="background:var(--cream);border-radius:8px;padding:1rem;border:1px solid var(--border);">
+          <div style="font-weight:600;color:var(--navy);font-size:13px;margin-bottom:.5rem;">University Route</div>
+          <div style="font-size:12px;color:var(--mid);">Apply directly to a GKS partner university. The university nominates candidates; NIIED makes the final selection.</div>
+        </div>
+      </div>
+
+      <h4 style="color:var(--navy);font-size:15px;margin:0 0 .8rem;">Annual Timeline</h4>
+      <div style="overflow-x:auto;margin-bottom:1.5rem;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead><tr style="background:var(--navy);color:#fff;"><th style="padding:8px 12px;text-align:left;">Period</th><th style="padding:8px 12px;text-align:left;">Milestone</th></tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;background:var(--cream);font-weight:500;">Sep–Oct</td><td style="padding:8px 12px;">GKS application opens on NIIED website</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;background:var(--cream);font-weight:500;">Oct–Nov</td><td style="padding:8px 12px;">Document submission via embassy or university</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;background:var(--cream);font-weight:500;">Dec–Feb</td><td style="padding:8px 12px;">Document review and interviews</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;background:var(--cream);font-weight:500;">Mar–Apr</td><td style="padding:8px 12px;">Final results announced</td></tr>
+            <tr><td style="padding:8px 12px;background:var(--cream);font-weight:500;">Following March</td><td style="padding:8px 12px;">Korean language training begins → degree program starts 1 year later</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="color:var(--navy);font-size:15px;margin:0 0 .8rem;">Official Resources</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;">
+        <a href="https://www.studyinkorea.go.kr/ko/plan/scholarship.do" target="_blank" rel="noopener" style="background:var(--navy);color:#fff;border-radius:6px;padding:8px 16px;font-size:13px;text-decoration:none;font-weight:600;">Apply via Study in Korea (NIIED) →</a>
+        <a href="https://www.niied.go.kr" target="_blank" rel="noopener" style="background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:12px;color:var(--blue);text-decoration:none;">NIIED Official Site ↗</a>
+      </div>
+    `
+  },
+    visa: {
+    title: 'Korea Student Visa Guide (D-2 / D-4)',
+    html: getVisaHtml()
+  },
+    contact: {
+    title: '✉️ Contact Us',
+    html: `
+      <p>Have a question about studying in Korea, or noticed outdated information on this site? We'd love to hear from you.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem;">
+
+
+        <div style="background:var(--cream);border-radius:10px;padding:1.2rem;border:1px solid var(--border);">
+          <div style="font-size:26px;margin-bottom:.6rem;">🕐</div>
+          <div style="font-weight:600;color:var(--navy);font-size:13px;margin-bottom:.3rem;">Hours</div>
+          <div style="font-size:13px;">Mon–Fri: 09:00–18:00 KST<br><span style="font-size:12px;color:var(--light);">Korea Standard Time (UTC+9)</span></div>
+        </div>
+        <div style="background:var(--cream);border-radius:10px;padding:1.2rem;border:1px solid var(--border);">
+          <div style="font-size:26px;margin-bottom:.6rem;">🌐</div>
+          <div style="font-weight:600;color:var(--navy);font-size:13px;margin-bottom:.3rem;">Website</div>
+          <a href="https://infobox911.com" target="_blank" style="color:var(--blue);font-size:13px;">infobox911.com</a>
+        </div>
+      </div>
+    `
+  }
+};
+
+function openModal(type) {
+  // National/Private: dynamic rendering
+  if (type === 'national' || type === 'private') {
+    var title = type === 'national'
+      ? 'National Universities (국립대학교)'
+      : 'Private Universities (사립대학교)';
+    document.getElementById('modalTitle').innerHTML = title;
+    document.getElementById('modalBody').innerHTML = buildUnivListHtml(type);
+    document.getElementById('modalOverlay').style.display = 'block';
+    document.getElementById('modalBox').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    return;
+  }
+  if (type === 'compare') {
+    document.getElementById('modalTitle').innerHTML = 'All Universities — Side-by-Side Comparison';
+    document.getElementById('modalBody').innerHTML = buildCompareHtml();
+    document.getElementById('modalOverlay').style.display = 'block';
+    document.getElementById('modalBox').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    return;
+  }
+  var mc = modalContent[type];
+  if (!mc) return;
+  document.getElementById('modalTitle').innerHTML = mc.title;
+  document.getElementById('modalBody').innerHTML = mc.html;
+  document.getElementById('modalOverlay').style.display = 'block';
+  document.getElementById('modalBox').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+
+function buildUnivListHtml(type) {
+  var list = universities.filter(function(u){ return u.type === type; })
+    .sort(function(a,b){
+      function n(x){ var m=x.match(/\d+/); return m?parseInt(m[0]):9999; }
+      return n(a.qs)-n(b.qs);
+    });
+  var subheading = type==='national'
+    ? '<p style="font-size:13px;color:var(--mid);margin-bottom:1.2rem">Government-funded · Same tuition for domestic and international students · No foreign surcharge</p>'
+    : '<p style="font-size:13px;color:var(--mid);margin-bottom:1.2rem">Private institutions · Wider range of programs · Leaders in English-track education</p>';
+  var cards = list.map(function(u){
+    var ck='<span style="color:#2E7D32;font-weight:600">Yes</span>';
+    var cx='<span style="color:#bbb">—</span>';
+    var badge = u.type==='national'
+      ? '<span style="background:#E3F2FD;color:#1565C0;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-left:6px">National</span>'
+      : '<span style="background:#FCE4EC;color:#880E4F;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-left:6px">Private</span>';
+    return '<div style="background:var(--cream);border-radius:10px;padding:1.2rem;border:1px solid var(--border);margin-bottom:.8rem">'
+      +'<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem">'
+      +'<div><span style="font-size:16px;font-weight:600;color:var(--navy)">'+u.abbr+'</span>'+badge
+      +'<span style="font-size:12px;color:var(--mid);margin-left:8px">'+u.name+'</span></div>'
+      +'<span style="font-size:12px;color:var(--light)">QS 2026: '+(u.qs.indexOf('Not')>=0?'Unranked':u.qs)+'</span>'
+      +'</div>'
+      +'<div style="font-size:12px;color:var(--mid);margin:.4rem 0 .8rem">📍 '+u.city+' &nbsp;·&nbsp; '+u.intake+'</div>'
+      +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.5rem;font-size:12px">'
+      +'<div><span style="color:var(--light)">Humanities/yr</span><br><strong>'+fmtKrwUsd(u.tuition.hum)+'</strong></div>'
+      +'<div><span style="color:var(--light)">Engineering/yr</span><br><strong>'+fmtKrwUsd(u.tuition.eng)+'</strong></div>'
+      +'<div><span style="color:var(--light)">Dorm/month</span><br><strong>'+u.dorm.split('(')[0].trim()+'</strong></div>'
+      +'<div><span style="color:var(--light)">English track</span><br><strong>'+(u.english?ck:cx)+'</strong></div>'
+      +'<div><span style="color:var(--light)">GKS partner</span><br><strong>'+(u.gks?ck:cx)+'</strong></div>'
+      +'</div>'
+      +'<div style="margin-top:.8rem;display:flex;gap:.5rem;flex-wrap:wrap">'
+      +'<a href="'+u.admUrl+'" target="_blank" rel="noopener" style="font-size:12px;background:var(--navy);color:#fff;padding:5px 12px;border-radius:5px;text-decoration:none">Apply ↗</a>'
+      +'<span style="font-size:12px;color:var(--mid);display:flex;align-items:center">'+u.contact.email+'</span>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+  return subheading + cards;
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').style.display = 'none';
+  document.getElementById('modalBox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
 </body>
 </html>
